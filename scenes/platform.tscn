@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bonsal6skicpu"]
+
+[ext_resource type="Texture2D" uid="uid://cnplfragpfoyb" path="res://assets/sprites/platforms.png" id="1_ba0x2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_55c7s"]
+size = Vector2(32, 9)
+
+[node name="Platform" type="AnimatableBody2D" unique_id=451356685]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=659642114]
+
+[node name="Platforms" type="Sprite2D" parent="." unique_id=1098988504]
+texture = ExtResource("1_ba0x2")
+region_enabled = true
+region_rect = Rect2(15.952248, 32.559822, 32.374573, 9.424934)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=511051350]
+shape = SubResource("RectangleShape2D_55c7s")
+one_way_collision = true

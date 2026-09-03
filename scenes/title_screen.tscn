@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://d0ubm7rwsje11"]
+
+[ext_resource type="Script" uid="uid://d2f7l52s4rnwk" path="res://scripts/title_screen.gd" id="1_fgkus"]
+[ext_resource type="Script" uid="uid://dbap0gqox0ty1" path="res://addons/markdownlabel/markdownlabel.gd" id="2_cs5ya"]
+[ext_resource type="Script" uid="uid://dcx7crs23nf4" path="res://addons/markdownlabel/header_formats/h1_format.gd" id="3_mykxm"]
+[ext_resource type="Script" uid="uid://d0sin64i4v3op" path="res://addons/markdownlabel/header_formats/h2_format.gd" id="4_tklts"]
+[ext_resource type="Script" uid="uid://dlok0dv1tq2bf" path="res://addons/markdownlabel/header_formats/h3_format.gd" id="5_u26n3"]
+[ext_resource type="Script" uid="uid://bayuh2vafablg" path="res://addons/markdownlabel/header_formats/h4_format.gd" id="6_ib7db"]
+[ext_resource type="Script" uid="uid://dfr1w7u3jgni3" path="res://addons/markdownlabel/header_formats/h5_format.gd" id="7_frs5l"]
+[ext_resource type="Script" uid="uid://bsi6dexoofpe6" path="res://addons/markdownlabel/header_formats/h6_format.gd" id="8_mynnq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8p87e"]
+line_spacing = 40.0
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+outline_size = 30
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cs5ya"]
+bg_color = Color(0.18359044, 0.18359047, 0.18359032, 1)
+
+[sub_resource type="Resource" id="Resource_e8tpv"]
+resource_local_to_scene = true
+script = ExtResource("3_mykxm")
+
+[sub_resource type="Resource" id="Resource_4qe4i"]
+resource_local_to_scene = true
+script = ExtResource("4_tklts")
+
+[sub_resource type="Resource" id="Resource_p07av"]
+resource_local_to_scene = true
+script = ExtResource("5_u26n3")
+
+[sub_resource type="Resource" id="Resource_khjys"]
+resource_local_to_scene = true
+script = ExtResource("6_ib7db")
+
+[sub_resource type="Resource" id="Resource_174rq"]
+resource_local_to_scene = true
+script = ExtResource("7_frs5l")
+
+[sub_resource type="Resource" id="Resource_lrxh4"]
+resource_local_to_scene = true
+script = ExtResource("8_mynnq")
+
+[node name="TitleScreen" type="Control" unique_id=1182050832 node_paths=PackedStringArray("markdown_label", "text_canvas")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fgkus")
+markdown_label = NodePath("TextCanvas/MarkdownLabel")
+text_canvas = NodePath("TextCanvas")
+
+[node name="Buttons" type="Node" parent="." unique_id=1046857052]
+
+[node name="StartButton" type="Button" parent="Buttons" unique_id=1377192964]
+z_index = 8
+offset_left = 500.0
+offset_top = 300.0
+offset_right = 660.0
+offset_bottom = 390.0
+text = "Start Game"
+
+[node name="VersionNotesButton" type="Button" parent="Buttons" unique_id=1620044166]
+offset_left = 45.0
+offset_top = 525.0
+offset_right = 205.0
+offset_bottom = 615.0
+text = "Version Notes"
+
+[node name="CreditsButton" type="Button" parent="Buttons" unique_id=894574905]
+offset_left = 230.0
+offset_top = 525.0
+offset_right = 390.0
+offset_bottom = 615.0
+text = "Credits
+"
+
+[node name="Aesthetics" type="Node" parent="." unique_id=632340480]
+
+[node name="Title" type="Label" parent="Aesthetics" unique_id=987585640]
+offset_left = 225.0
+offset_top = 65.0
+offset_right = 925.0
+offset_bottom = 245.0
+text = "Untitled Cow Game"
+label_settings = SubResource("LabelSettings_8p87e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Background" type="ColorRect" parent="Aesthetics" unique_id=1897062407]
+show_behind_parent = true
+z_index = -5
+z_as_relative = false
+offset_left = -669.0
+offset_top = -377.0
+offset_right = 1852.0
+offset_bottom = 1154.0
+mouse_filter = 2
+color = Color(0.12037235, 0.12037235, 0.12037235, 1)
+
+[node name="Text" type="Node" parent="." unique_id=272364061]
+
+[node name="TextCanvas" type="CanvasLayer" parent="." unique_id=1631728234]
+
+[node name="MarkdownLabel" type="RichTextLabel" parent="TextCanvas" unique_id=1074004117]
+offset_left = 223.0
+offset_top = 34.0
+offset_right = 952.0
+offset_bottom = 585.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_cs5ya")
+bbcode_enabled = true
+script = ExtResource("2_cs5ya")
+h1 = SubResource("Resource_e8tpv")
+h2 = SubResource("Resource_4qe4i")
+h3 = SubResource("Resource_p07av")
+h4 = SubResource("Resource_khjys")
+h5 = SubResource("Resource_174rq")
+h6 = SubResource("Resource_lrxh4")
+metadata/_custom_type_script = "uid://dbap0gqox0ty1"
+
+[node name="CloseButton" type="Button" parent="TextCanvas" unique_id=1471999886]
+offset_left = 902.0
+offset_top = 33.0
+offset_right = 952.0
+offset_bottom = 64.0
+text = "Close"
+
+[connection signal="pressed" from="Buttons/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Buttons/VersionNotesButton" to="." method="_on_version_notes_button_pressed"]
+[connection signal="pressed" from="Buttons/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="TextCanvas/CloseButton" to="." method="_on_close_button_pressed"]
