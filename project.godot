@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Godot Tutorial Game"
+config/name="Untitled Cow Game"
 run/main_scene="uid://d0ubm7rwsje11"
 config/features=PackedStringArray("4.7", "Forward Plus")
 boot_splash/bg_color=Color(1, 1, 1, 1)
