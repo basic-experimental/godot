@@ -8,7 +8,11 @@ Date: 8/31/26
 		- Last 8 frames are jump Animation
 	- Added Soundtrack found online, WalkSfx, and JumpSfx
 
-
+Date: 9/7/26
+	-Added Ram functionality (sprint)
+		Use Shift key
+		Bounce back from walls with enough speed
+	-Implemented basic level design
 
 
 
