@@ -14,6 +14,10 @@ Date: 9/7/26
 		Bounce back from walls with enough speed
 	-Implemented basic level design
 	-Updated title
+	
+Date: 9/8/26
+	-Added Slam (s or down)
+	-Updated level design with new assets
 
 
 
