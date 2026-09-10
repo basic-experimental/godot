@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8awg2y3mox6x"
-path="res://.godot/imported/TerrainWithFence.png-8fb0318224187e3d7d11d69816eaceb6.ctex"
+uid="uid://b6eju8jkw84pj"
+path="res://.godot/imported/RobertGoddardStickMan-Sheet.png-eed42500e2ea6f64db5add401fbf6896.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/TerrainWithFence.png"
-dest_files=["res://.godot/imported/TerrainWithFence.png-8fb0318224187e3d7d11d69816eaceb6.ctex"]
+source_file="res://assets/RobertGoddardStickMan-Sheet.png"
+dest_files=["res://.godot/imported/RobertGoddardStickMan-Sheet.png-eed42500e2ea6f64db5add401fbf6896.ctex"]
 
 [params]
 
