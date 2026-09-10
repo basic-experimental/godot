@@ -11,8 +11,9 @@ const BUMP_VELOCITY = -150.0
 const BUMP_MULT = -0.5
 const CHARGE_MULT = 2.0
 const BUMP_SPEED_MULT_THRESHOLD = 1.5
-const SLAM_SPEED = 400.0
-const ROCKET_TIME = 1000.0
+const SLAM_SPEED = 500.0
+const ROCKET_TIME = 1000 #ms
+const ROCKET_SPEED = 300.0
 
 enum PowerUp {
 	Normal,
@@ -23,18 +24,22 @@ enum PowerUp {
 
 var power_up: PowerUp = PowerUp.Normal
 var direction = 0.0
+var face_dir = 1
 var is_jumping = false 
 var is_charging = false
 var is_slamming = false
 var is_rocketing = false
-var rocket_start_time = -9223372036854775808 # Minimum int value
+var rocket_start_time = -9223372036854775808
+var rocket_on_cooldown = false
 
 func _physics_process(delta: float) -> void:
 	# --- MOVEMENT ---
 	# Gravity
-	if not is_on_floor():
+	if !is_on_floor():
 		if is_slamming:
 			velocity.y = SLAM_SPEED
+		elif is_rocketing:
+			velocity.y = 0
 		else:
 			velocity += get_gravity() * delta
 	
@@ -61,17 +66,22 @@ func _physics_process(delta: float) -> void:
 			is_slamming = false
 	
 	# Rocket
+	if is_on_floor():
+		rocket_on_cooldown = false
+	
 	if power_up == PowerUp.Rocket:
-		if !is_rocketing && !is_on_floor() && Input.is_action_just_pressed("charge"):
+		if !is_rocketing && !is_on_floor() && !rocket_on_cooldown && Input.is_action_just_pressed("rocket"):
 			is_rocketing = true
 			rocket_start_time = Time.get_ticks_msec()
 		elif is_rocketing && Input.is_action_just_released("rocket"):
 			is_rocketing = false
+			rocket_on_cooldown = true
 		elif is_rocketing && Time.get_ticks_msec() - rocket_start_time >= ROCKET_TIME:
 			is_rocketing = false
+			rocket_on_cooldown = true
 	
 	# Get the input direction and handle the movement/deceleration
-	if !is_slamming:
+	if !is_slamming && !is_rocketing:
 		direction = Input.get_axis("move_left", "move_right")
 		if direction:
 			var speed = SPEED * CHARGE_MULT if is_charging else SPEED
@@ -84,17 +94,24 @@ func _physics_process(delta: float) -> void:
 			# Stop walk sound when player stops moving on the ground
 			if is_on_floor() and player_sfx.stream == SFX_WALK:
 				player_sfx.stop()
+				
+	if is_rocketing:
+		velocity.x = face_dir * ROCKET_SPEED
 	
 	# --- GRAPHICS ---
 	# Sprite flipping
 	if direction > 0:
-		animated_sprite.flip_h = false
+		face_dir = 1
 	elif direction < 0:
-		animated_sprite.flip_h = true
+		face_dir = -1
+		
+	animated_sprite.flip_h = (face_dir == -1)
 	
 	# Animation
 	if is_slamming:
 		animated_sprite.play("slam")
+	elif is_rocketing:
+		animated_sprite.play("rocket")
 	elif !is_on_floor():
 		animated_sprite.play("jump")
 	elif direction == 0:
