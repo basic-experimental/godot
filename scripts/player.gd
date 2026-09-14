@@ -16,7 +16,7 @@ const ROCKET_TIME = 500 #ms
 const ROCKET_SPEED = 300.0
 const FIRE_MULT = 0.5
 const FIRE_TIME = 2000 #ms
-const FIRE_COOLDOWN = 3000 #ms
+const FIRE_COOLDOWN = 1000 #ms
 
 
 enum PowerUp {
@@ -38,10 +38,10 @@ var is_firing = false
 var rocket_start_time = 0
 var rocket_on_cooldown = false
 var fire_start_time = 0
-var fire_end_time = 0
+var fire_end_time = -FIRE_COOLDOWN
 
 func _physics_process(delta: float) -> void:
-	print(is_slamming)
+	var TIME = Time.get_ticks_msec()
 	# --- MOVEMENT ---
 	# Gravity
 	if !is_on_floor():
@@ -82,19 +82,31 @@ func _physics_process(delta: float) -> void:
 	if power_up == PowerUp.Rocket or power_up == PowerUp.All:
 		if !is_rocketing && !is_on_floor() && !rocket_on_cooldown && Input.is_action_just_pressed("rocket"):
 			is_rocketing = true
-			rocket_start_time = Time.get_ticks_msec()
+			rocket_start_time = TIME
 		elif is_rocketing && Input.is_action_just_released("rocket"):
 			is_rocketing = false
 			rocket_on_cooldown = true
-		elif is_rocketing && Time.get_ticks_msec() - rocket_start_time >= ROCKET_TIME:
+		elif is_rocketing && TIME - rocket_start_time >= ROCKET_TIME:
 			is_rocketing = false
 			rocket_on_cooldown = true
+			
+	# Fire
+	if power_up == PowerUp.Fire or power_up == PowerUp.All:
+		if !is_firing && is_on_floor() && TIME - fire_end_time >= FIRE_COOLDOWN && Input.is_action_just_pressed("fire"):
+			is_firing = true
+			fire_start_time = TIME
+		elif is_firing && Input.is_action_just_released("fire"):
+			is_firing = false
+			fire_end_time = TIME
+		elif is_firing && TIME - fire_start_time >= FIRE_TIME:
+			is_firing = false
+			fire_end_time = TIME
 	
 	# Get the input direction and handle the movement/deceleration
 	if !is_slamming && !is_rocketing:
 		direction = Input.get_axis("move_left", "move_right")
 		if direction:
-			var speed = SPEED * CHARGE_MULT if is_charging else SPEED
+			var speed = SPEED * CHARGE_MULT if is_charging else SPEED * FIRE_MULT if is_firing else SPEED
 			velocity.x = move_toward(velocity.x, direction * speed, ACCELERATION * delta)
 			# Only play walk sound if on floor and not already playing
 			if is_on_floor() and not player_sfx.is_playing():
@@ -124,6 +136,8 @@ func _physics_process(delta: float) -> void:
 		animated_sprite.play("statue")
 	elif is_rocketing:
 		animated_sprite.play("rocket")
+	elif is_firing:
+		animated_sprite.play("fire_breathing")
 	elif !is_on_floor():
 		animated_sprite.play("jump")
 	elif direction == 0:
