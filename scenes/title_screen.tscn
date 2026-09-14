@@ -2,20 +2,13 @@
 
 [ext_resource type="Script" uid="uid://d2f7l52s4rnwk" path="res://scripts/title_screen.gd" id="1_fgkus"]
 [ext_resource type="Script" uid="uid://dbap0gqox0ty1" path="res://addons/markdownlabel/markdownlabel.gd" id="2_cs5ya"]
+[ext_resource type="Texture2D" uid="uid://sleki2u5o08o" path="res://assets/GoatsMilkTitle.png" id="2_mykxm"]
 [ext_resource type="Script" uid="uid://dcx7crs23nf4" path="res://addons/markdownlabel/header_formats/h1_format.gd" id="3_mykxm"]
 [ext_resource type="Script" uid="uid://d0sin64i4v3op" path="res://addons/markdownlabel/header_formats/h2_format.gd" id="4_tklts"]
 [ext_resource type="Script" uid="uid://dlok0dv1tq2bf" path="res://addons/markdownlabel/header_formats/h3_format.gd" id="5_u26n3"]
 [ext_resource type="Script" uid="uid://bayuh2vafablg" path="res://addons/markdownlabel/header_formats/h4_format.gd" id="6_ib7db"]
 [ext_resource type="Script" uid="uid://dfr1w7u3jgni3" path="res://addons/markdownlabel/header_formats/h5_format.gd" id="7_frs5l"]
 [ext_resource type="Script" uid="uid://bsi6dexoofpe6" path="res://addons/markdownlabel/header_formats/h6_format.gd" id="8_mynnq"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_8p87e"]
-line_spacing = 40.0
-font_size = 64
-font_color = Color(0, 0, 0, 1)
-outline_size = 30
-shadow_size = 0
-shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cs5ya"]
 bg_color = Color(0.18359044, 0.18359047, 0.18359032, 1)
@@ -82,16 +75,6 @@ text = "Credits
 
 [node name="Aesthetics" type="Node" parent="." unique_id=632340480]
 
-[node name="Title" type="Label" parent="Aesthetics" unique_id=987585640]
-offset_left = 225.0
-offset_top = 65.0
-offset_right = 925.0
-offset_bottom = 245.0
-text = "GOAT'S MILK"
-label_settings = SubResource("LabelSettings_8p87e")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Background" type="ColorRect" parent="Aesthetics" unique_id=1897062407]
 show_behind_parent = true
 z_index = -5
@@ -103,9 +86,15 @@ offset_bottom = 1154.0
 mouse_filter = 2
 color = Color(0.12037235, 0.12037235, 0.12037235, 1)
 
+[node name="Title" type="Sprite2D" parent="Aesthetics" unique_id=427544730]
+position = Vector2(600, 175)
+scale = Vector2(4, 4)
+texture = ExtResource("2_mykxm")
+
 [node name="Text" type="Node" parent="." unique_id=272364061]
 
 [node name="TextCanvas" type="CanvasLayer" parent="." unique_id=1631728234]
+visible = false
 
 [node name="MarkdownLabel" type="RichTextLabel" parent="TextCanvas" unique_id=1074004117]
 offset_left = 223.0
