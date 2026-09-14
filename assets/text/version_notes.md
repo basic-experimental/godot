@@ -18,6 +18,10 @@ Date: 9/7/26
 Date: 9/8/26
 	-Added Slam (s or down)
 	-Updated level design with new assets
+	
+Date: 9/13/26
+	-Added Barn, Rocket, and Robert sprites
+	-Added cutscene at end of level
 
 
 
