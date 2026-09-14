@@ -128,6 +128,8 @@ func _physics_process(delta: float) -> void:
 		animated_sprite.play("jump")
 	elif direction == 0:
 		animated_sprite.play("idle")
+	elif is_charging:
+		animated_sprite.play("ram")
 	else:
 		animated_sprite.play("run")
 
