@@ -27,10 +27,7 @@ enum PowerUp {
 	Fire
 }
 
-<<<<<<< Updated upstream
-=======
-var power_up: PowerUp = PowerUp.Slam
->>>>>>> Stashed changes
+var power_up: PowerUp = PowerUp.All
 var direction = 0.0
 var face_dir = 1
 var is_jumping = false 
@@ -40,12 +37,8 @@ var is_rocketing = false
 var is_firing = false
 var rocket_start_time = 0
 var rocket_on_cooldown = false
-<<<<<<< Updated upstream
-var power_up = PowerUp.All
-=======
 var fire_start_time = 0
 var fire_end_time = 0
->>>>>>> Stashed changes
 
 func _physics_process(delta: float) -> void:
 	print(is_slamming)
