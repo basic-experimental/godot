@@ -31,6 +31,7 @@ var is_slamming = false
 var is_rocketing = false
 var rocket_start_time = -9223372036854775808
 var rocket_on_cooldown = false
+var power_up = PowerUp.All
 
 func _physics_process(delta: float) -> void:
 	# --- MOVEMENT ---
