@@ -25,6 +25,7 @@ Date: 9/13/26
 	
 Date: 9/14/26
 	-Updated Gompei sprites with outline
+	-Updated abilities with sprites
 
 
 
