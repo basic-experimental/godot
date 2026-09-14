@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bqdtjypkkfp65" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://bnetmnf750goh" path="res://assets/WPI Goat Sprite/WPIGoatWithOutline.png" id="2_kvuet"]
 [ext_resource type="Script" uid="uid://cdi3hkl8hq24t" path="res://scripts/player.gd" id="2_yqjtg"]
-[ext_resource type="Texture2D" path="res://assets/GompeiRocket-Sheet.png" id="3_dinhu"]
 [ext_resource type="PackedScene" uid="uid://caybaaxou081g" path="res://scenes/killzone.tscn" id="3_p57ef"]
+[ext_resource type="Texture2D" uid="uid://c414e4k7t2wdo" path="res://assets/WPI Goat Sprite/GompeiRocket-Sheet.png" id="4_kvuet"]
 [ext_resource type="AudioStream" uid="uid://c5qhyb43cdcm3" path="res://assets/sounds/GoatWalksfx.wav" id="5_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://8awg2y3mox6x" path="res://assets/sprites/TerrainWithFence.png" id="6_dinhu"]
 [ext_resource type="FontFile" uid="uid://drhvcqvj53xwt" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="8_gee14"]
@@ -388,48 +388,45 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cc37w"]
 size = Vector2(3.050003, 34.874996)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kvuet"]
-atlas = ExtResource("3_dinhu")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssvqc"]
+atlas = ExtResource("4_kvuet")
 region = Rect2(0, 0, 112, 160)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ssvqc"]
-atlas = ExtResource("3_dinhu")
+[sub_resource type="AtlasTexture" id="AtlasTexture_264po"]
+atlas = ExtResource("4_kvuet")
 region = Rect2(112, 0, 112, 160)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_264po"]
-atlas = ExtResource("3_dinhu")
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kice"]
+atlas = ExtResource("4_kvuet")
 region = Rect2(224, 0, 112, 160)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1kice"]
-atlas = ExtResource("3_dinhu")
+[sub_resource type="AtlasTexture" id="AtlasTexture_5newe"]
+atlas = ExtResource("4_kvuet")
 region = Rect2(336, 0, 112, 160)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5newe"]
-atlas = ExtResource("3_dinhu")
+[sub_resource type="AtlasTexture" id="AtlasTexture_37s47"]
+atlas = ExtResource("4_kvuet")
 region = Rect2(448, 0, 112, 160)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_37s47"]
-atlas = ExtResource("3_dinhu")
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt5mj"]
+atlas = ExtResource("4_kvuet")
 region = Rect2(560, 0, 112, 160)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bt5mj"]
-atlas = ExtResource("3_dinhu")
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1j6l"]
+atlas = ExtResource("4_kvuet")
 region = Rect2(672, 0, 112, 160)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e1j6l"]
-atlas = ExtResource("3_dinhu")
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl11u"]
+atlas = ExtResource("4_kvuet")
 region = Rect2(784, 0, 112, 160)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pl11u"]
-atlas = ExtResource("3_dinhu")
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxtfn"]
+atlas = ExtResource("4_kvuet")
 region = Rect2(896, 0, 112, 160)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8p87e"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kvuet")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ssvqc")
 }, {
@@ -453,6 +450,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pl11u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxtfn")
 }],
 "loop": 0,
 "name": &"rocket",

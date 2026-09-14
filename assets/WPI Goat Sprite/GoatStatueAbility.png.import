@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c414e4k7t2wdo"
-path="res://.godot/imported/GompeiRocket-Sheet.png-93ee647acc7d0b571db63f33ef35c099.ctex"
+uid="uid://cykn6ukek7vnw"
+path="res://.godot/imported/GoatStatueAbility.png-32a32198602b6aa443990f6e4e65fd65.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/WPI Goat Sprite/GompeiRocket-Sheet.png"
-dest_files=["res://.godot/imported/GompeiRocket-Sheet.png-93ee647acc7d0b571db63f33ef35c099.ctex"]
+source_file="res://assets/WPI Goat Sprite/GoatStatueAbility.png"
+dest_files=["res://.godot/imported/GoatStatueAbility.png-32a32198602b6aa443990f6e4e65fd65.ctex"]
 
 [params]
 
