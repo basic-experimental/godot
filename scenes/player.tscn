@@ -1,6 +1,22 @@
 [gd_scene format=3 uid="uid://bqdtjypkkfp65"]
 
 [ext_resource type="Texture2D" uid="uid://bnetmnf750goh" path="res://assets/WPI Goat Sprite/WPIGoatWithOutline.png" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://b83ef8cexxpn8" path="res://assets/WPI Goat Sprite/WPIGoatBreathingFire-Sheet.png" id="1_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://dk4jv40bgtek6" path="res://assets/WPI Goat Sprite/WPIRammingAbilityWithOutline.png" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://cu3wcf8nr24dt" path="res://assets/WPI Goat Sprite/WPIGoatJetpackAbility.png" id="3_dqkch"]
+[ext_resource type="Texture2D" uid="uid://cykn6ukek7vnw" path="res://assets/WPI Goat Sprite/GoatStatueAbility.png" id="3_qhqgy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dt7fs"]
+atlas = ExtResource("1_qlg0r")
+region = Rect2(0, 0, 50, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqfne"]
+atlas = ExtResource("1_qlg0r")
+region = Rect2(50, 0, 50, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnwbv"]
+atlas = ExtResource("1_qlg0r")
+region = Rect2(100, 0, 50, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
@@ -46,6 +62,30 @@ region = Rect2(640, 0, 32, 32)
 atlas = ExtResource("1_3vyb7")
 region = Rect2(672, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_a38lo"]
+atlas = ExtResource("2_g2els")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ni07"]
+atlas = ExtResource("2_g2els")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l71n6"]
+atlas = ExtResource("2_g2els")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujl30"]
+atlas = ExtResource("3_dqkch")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31cv2"]
+atlas = ExtResource("3_dqkch")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf23h"]
+atlas = ExtResource("3_dqkch")
+region = Rect2(64, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_jej6c"]
 atlas = ExtResource("1_3vyb7")
 region = Rect2(0, 0, 32, 32)
@@ -82,8 +122,26 @@ region = Rect2(224, 0, 32, 32)
 atlas = ExtResource("1_3vyb7")
 region = Rect2(256, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ke2ow"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_mtaf5"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dt7fs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqfne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnwbv")
+}],
+"loop": 1,
+"name": &"fire_breathing",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_g2els")
@@ -129,6 +187,34 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_a38lo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ni07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l71n6")
+}],
+"loop": 1,
+"name": &"ram",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujl30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31cv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pf23h")
+}],
+"loop": 1,
+"name": &"rocket",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_jej6c")
 }, {
 "duration": 1.0,
@@ -158,6 +244,14 @@ animations = [{
 "loop": 1,
 "name": &"run",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ke2ow")
+}],
+"loop": 1,
+"name": &"statue",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_55c7s"]
@@ -171,9 +265,9 @@ z_index = 5
 position = Vector2(0, -15)
 scale = Vector2(0.90625, 0.90625)
 sprite_frames = SubResource("SpriteFrames_mtaf5")
-animation = &"run"
+animation = &"fire_breathing"
 autoplay = "idle"
-frame_progress = 0.8556297
+frame_progress = 0.5221975
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1165716112]
 position = Vector2(0, -11)
