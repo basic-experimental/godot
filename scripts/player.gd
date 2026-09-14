@@ -16,13 +16,13 @@ const ROCKET_TIME = 1000 #ms
 const ROCKET_SPEED = 300.0
 
 enum PowerUp {
+	All,
 	Normal,
 	Slam,
 	Rocket,
 	Fire	
 }
 
-var power_up: PowerUp = PowerUp.Normal
 var direction = 0.0
 var face_dir = 1
 var is_jumping = false 
@@ -59,7 +59,7 @@ func _physics_process(delta: float) -> void:
 		is_charging = false
 		
 	# Slam
-	if power_up == PowerUp.Slam:
+	if power_up == PowerUp.Slam or power_up == PowerUp.All:
 		if  !is_slamming && !is_on_floor() && Input.is_action_just_pressed("slam"):
 			is_slamming = true
 		elif is_slamming && is_on_floor() && Input.is_action_just_released("slam"):
@@ -69,7 +69,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		rocket_on_cooldown = false
 	
-	if power_up == PowerUp.Rocket:
+	if power_up == PowerUp.Rocket or power_up == PowerUp.All:
 		if !is_rocketing && !is_on_floor() && !rocket_on_cooldown && Input.is_action_just_pressed("rocket"):
 			is_rocketing = true
 			rocket_start_time = Time.get_ticks_msec()
@@ -109,7 +109,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Animation
 	if is_slamming:
-		animated_sprite.play("slam")
+		animated_sprite.play("statue")
 	elif is_rocketing:
 		animated_sprite.play("rocket")
 	elif !is_on_floor():
