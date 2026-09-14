@@ -22,6 +22,9 @@ Date: 9/8/26
 Date: 9/13/26
 	-Added Barn, Rocket, and Robert sprites
 	-Added cutscene at end of level
+	
+Date: 9/14/26
+	-Updated Gompei sprites with outline
 
 
 
