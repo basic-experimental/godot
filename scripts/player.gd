@@ -12,27 +12,36 @@ const BUMP_MULT = -0.5
 const CHARGE_MULT = 2.0
 const BUMP_SPEED_MULT_THRESHOLD = 1.5
 const SLAM_SPEED = 500.0
-const ROCKET_TIME = 1000 #ms
+const ROCKET_TIME = 500 #ms
 const ROCKET_SPEED = 300.0
+const FIRE_MULT = 0.5
+const FIRE_TIME = 2000 #ms
+const FIRE_COOLDOWN = 3000 #ms
+
 
 enum PowerUp {
 	All,
 	Normal,
 	Slam,
 	Rocket,
-	Fire	
+	Fire
 }
 
+var power_up: PowerUp = PowerUp.All
 var direction = 0.0
 var face_dir = 1
 var is_jumping = false 
 var is_charging = false
 var is_slamming = false
 var is_rocketing = false
-var rocket_start_time = -9223372036854775808
+var is_firing = false
+var rocket_start_time = 0
 var rocket_on_cooldown = false
+var fire_start_time = 0
+var fire_end_time = 0
 
 func _physics_process(delta: float) -> void:
+	print(is_slamming)
 	# --- MOVEMENT ---
 	# Gravity
 	if !is_on_floor():
@@ -62,6 +71,7 @@ func _physics_process(delta: float) -> void:
 	if power_up == PowerUp.Slam or power_up == PowerUp.All:
 		if  !is_slamming && !is_on_floor() && Input.is_action_just_pressed("slam"):
 			is_slamming = true
+			velocity.x = 0
 		elif is_slamming && is_on_floor() && Input.is_action_just_released("slam"):
 			is_slamming = false
 	
@@ -97,6 +107,8 @@ func _physics_process(delta: float) -> void:
 				
 	if is_rocketing:
 		velocity.x = face_dir * ROCKET_SPEED
+		velocity.y = -ROCKET_SPEED
+		
 	
 	# --- GRAPHICS ---
 	# Sprite flipping
@@ -116,6 +128,8 @@ func _physics_process(delta: float) -> void:
 		animated_sprite.play("jump")
 	elif direction == 0:
 		animated_sprite.play("idle")
+	elif is_charging:
+		animated_sprite.play("ram")
 	else:
 		animated_sprite.play("run")
 

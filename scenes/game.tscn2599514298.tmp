@@ -778,9 +778,7 @@ text = "Hello Gompei this is test world :)
 [Space] [W] [Up] to jump
 [A] [Left] to move left
 [D] [Right] to move right
-[Shift] to ram
-[Shift] in air to rocket
-[S] in air to ground pound"
+[Shift] to ram"
 
 [node name="Robert" type="Label" parent="Labels" unique_id=292323994]
 visible = false
