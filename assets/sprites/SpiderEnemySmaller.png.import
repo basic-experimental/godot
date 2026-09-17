@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcy1svfk8mgd8"
-path="res://.godot/imported/PerpetualDancingCow.png-5c1406bd1f7c76e123715943b94a3012.ctex"
+uid="uid://bqpvdq5b0qixk"
+path="res://.godot/imported/SpiderEnemySmaller.png-ae746f92fdf60dd919086b451c38fb81.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/PerpetualDancingCow.png"
-dest_files=["res://.godot/imported/PerpetualDancingCow.png-5c1406bd1f7c76e123715943b94a3012.ctex"]
+source_file="res://assets/sprites/SpiderEnemySmaller.png"
+dest_files=["res://.godot/imported/SpiderEnemySmaller.png-ae746f92fdf60dd919086b451c38fb81.ctex"]
 
 [params]
 
