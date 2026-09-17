@@ -62,9 +62,10 @@ func _physics_process(delta: float) -> void:
 		is_jumping = false
 		velocity.y /= 2
 	
+	# Charging
 	if Input.is_action_pressed("charge") and is_on_floor():
 		is_charging = true
-	else:
+	elif Input.is_action_just_released("charge"):
 		is_charging = false
 		
 	# Slam
@@ -154,12 +155,20 @@ func _physics_process(delta: float) -> void:
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
 		var normal = collision.get_normal()
-		# Bump on wall
-		if abs(normal.x) > abs(normal.y) and is_charging and abs(vx_before_collide) > SPEED * BUMP_SPEED_MULT_THRESHOLD:
-			velocity.x = BUMP_MULT * vx_before_collide
+		if is_charging:
+			# Bump on wall
+			if abs(normal.x) > abs(normal.y) and abs(vx_before_collide) > SPEED * BUMP_SPEED_MULT_THRESHOLD:
+				velocity.x = BUMP_MULT * vx_before_collide
+				
+				if is_on_floor():
+					velocity.y = BUMP_VELOCITY
 			
-			if is_on_floor():
-				velocity.y = BUMP_VELOCITY
+			var collider = collision.get_collider()
+			
+			# Hurt Enemy
+			if(collider.is_in_group("enemy") and collider.direction == face_dir and collider.direction == -sign(velocity.x)):
+				collider.health -= 1
+				is_charging = false
 	
 func play_player_sound(stream: AudioStream):
 	player_sfx.stream = stream
