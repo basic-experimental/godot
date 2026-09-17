@@ -35,6 +35,10 @@ project/assembly_name="Godot Tutorial Game"
 
 enabled=PackedStringArray("res://addons/markdownlabel/plugin.cfg")
 
+[global_group]
+
+enemy=""
+
 [input]
 
 jump={
