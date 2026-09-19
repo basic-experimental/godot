@@ -461,7 +461,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lbhrr"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ir15t"]
 texture = ExtResource("6_dinhu")
 0:0/0 = 0
 1:0/0 = 0
@@ -667,7 +667,7 @@ texture = ExtResource("6_dinhu")
 11:11/0 = 0
 11:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ir15t"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ca42v"]
 texture = ExtResource("6_trtic")
 0:0/0 = 0
 1:0/0 = 0
@@ -904,8 +904,8 @@ texture = ExtResource("6_trtic")
 
 [sub_resource type="TileSet" id="TileSet_55c7s"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_lbhrr")
-sources/1 = SubResource("TileSetAtlasSource_ir15t")
+sources/0 = SubResource("TileSetAtlasSource_ir15t")
+sources/1 = SubResource("TileSetAtlasSource_ca42v")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5kx1k"]
 

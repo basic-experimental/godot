@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://byffrfoaotcxp"]
 
+[ext_resource type="Texture2D" uid="uid://c414e4k7t2wdo" path="res://assets/WPI Goat Sprite/GompeiRocket-Sheet.png" id="1_rwd0d"]
 [ext_resource type="Texture2D" uid="uid://d2ny608707bua" path="res://assets/Tileset.png" id="1_tjjxi"]
 [ext_resource type="PackedScene" uid="uid://bqdtjypkkfp65" path="res://scenes/player.tscn" id="2_axyqp"]
 [ext_resource type="Script" uid="uid://cdi3hkl8hq24t" path="res://scripts/player.gd" id="3_3m0gu"]
@@ -8,6 +9,166 @@
 [ext_resource type="Texture2D" uid="uid://8awg2y3mox6x" path="res://assets/sprites/TerrainWithFence.png" id="5_o7h1l"]
 
 [sub_resource type="Curve2D" id="Curve2D_o7h1l"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -400, 0, 0, 0, 0, 1, -20)
+}
+point_count = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssvqc"]
+atlas = ExtResource("1_rwd0d")
+region = Rect2(0, 0, 112, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_264po"]
+atlas = ExtResource("1_rwd0d")
+region = Rect2(112, 0, 112, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kice"]
+atlas = ExtResource("1_rwd0d")
+region = Rect2(224, 0, 112, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5newe"]
+atlas = ExtResource("1_rwd0d")
+region = Rect2(336, 0, 112, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37s47"]
+atlas = ExtResource("1_rwd0d")
+region = Rect2(448, 0, 112, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt5mj"]
+atlas = ExtResource("1_rwd0d")
+region = Rect2(560, 0, 112, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1j6l"]
+atlas = ExtResource("1_rwd0d")
+region = Rect2(672, 0, 112, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl11u"]
+atlas = ExtResource("1_rwd0d")
+region = Rect2(784, 0, 112, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxtfn"]
+atlas = ExtResource("1_rwd0d")
+region = Rect2(896, 0, 112, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hgrhv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssvqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_264po")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kice")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5newe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37s47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt5mj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1j6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pl11u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxtfn")
+}],
+"loop": 0,
+"name": &"rocket",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_rwd0d"]
+resource_name = "OpeningCutsceneW2"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RocketShip:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -400), Vector2(0, -65)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RocketShip:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.65, 2, 5, 5.25, 5.5, 6, 6.5, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 7, 6, 5, 4, 3, 2, 1, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Player:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0009999999, 6.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_hgrhv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RocketShip:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -400)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RocketShip:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Player:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dr8ba"]
+_data = {
+&"OpeningCutsceneW2": SubResource("Animation_rwd0d"),
+&"RESET": SubResource("Animation_hgrhv")
+}
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rwd0d"]
 texture = ExtResource("5_o7h1l")
@@ -463,9 +624,27 @@ sources/1 = SubResource("TileSetAtlasSource_hgrhv")
 curve = SubResource("Curve2D_o7h1l")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="OpeningCutscene/Path2D" unique_id=1007755180]
+position = Vector2(0, -400)
+rotation = 1.5681647
+
+[node name="CutsceneCamera" type="Camera2D" parent="OpeningCutscene/Path2D/PathFollow2D" unique_id=1996126480]
+zoom = Vector2(3, 3)
+limit_left = -100
+
+[node name="RocketShip" type="AnimatedSprite2D" parent="OpeningCutscene" unique_id=277106309]
+z_index = -6
+position = Vector2(0, -400)
+scale = Vector2(0.66964287, 0.66964287)
+sprite_frames = SubResource("SpriteFrames_hgrhv")
+animation = &"rocket"
+frame = 8
+
+[node name="OpeningCutscene" type="AnimationPlayer" parent="OpeningCutscene" unique_id=564290255]
+libraries/ = SubResource("AnimationLibrary_dr8ba")
 
 [node name="Player" parent="." unique_id=1513251035 instance=ExtResource("2_axyqp")]
-position = Vector2(12, -23)
+visible = false
+position = Vector2(17, -15)
 script = ExtResource("3_3m0gu")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1003188252]
