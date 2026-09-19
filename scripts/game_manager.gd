@@ -23,3 +23,5 @@ func rocket_cutscene():
 	player.get_node("Camera2D").enabled = false
 	camera.enabled = true
 	cutscene.play("cutscene")
+	await get_tree().create_timer(12.0).timeout
+	get_tree().change_scene_to_file("res://scenes/world_2.tscn")
