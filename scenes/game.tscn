@@ -970,7 +970,7 @@ tile_map_data = PackedByteArray("AAD+/wMAAQAJAAAAAAD+/wQAAQAJAAEAAAD+/wUAAAAIAAI
 tile_set = SubResource("TileSet_55c7s")
 
 [node name="Player" parent="." unique_id=1513251035 instance=ExtResource("1_uwrxv")]
-position = Vector2(106, 48)
+position = Vector2(62, 48)
 script = ExtResource("2_yqjtg")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1953862945]
@@ -1050,10 +1050,7 @@ autowrap_mode = 3
 
 [node name="Enemies" type="Node" parent="." unique_id=233007903]
 
-[node name="CharacterBody2D2" parent="Enemies" unique_id=994547376 instance=ExtResource("14_trtic")]
-position = Vector2(248, 16)
-
 [node name="CharacterBody2D" parent="Enemies" unique_id=1625210776 instance=ExtResource("14_trtic")]
-position = Vector2(891, -336)
+position = Vector2(796, -320)
 
 [connection signal="body_entered" from="GameManager/CutsceneDetection" to="GameManager" method="_on_cutscene_detection_body_entered"]
