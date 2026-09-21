@@ -18,7 +18,7 @@
 [ext_resource type="FontFile" uid="uid://bnj1346fn3m6p" path="res://assets/fonts/PixelOperator8.ttf" id="12_kvuet"]
 [ext_resource type="PackedScene" uid="uid://bmmctyphy3pay" path="res://scenes/spider.tscn" id="14_trtic"]
 [ext_resource type="Texture2D" uid="uid://ccy807y0kk8ol" path="res://assets/TerrainWithFenceandBridge.png" id="18_ssvqc"]
-[ext_resource type="Texture2D" uid="uid://dk4jv40bgtek6" path="res://assets/WPI Goat Sprite/WPIRammingAbilityWithOutline.png" id="19_264po"]
+[ext_resource type="Texture2D" uid="uid://c241jh3ekjq1h" path="res://assets/WPI Goat Sprite/WPIRammingAbilityWithOutline.png" id="19_264po"]
 
 [sub_resource type="Curve2D" id="Curve2D_kvpfn"]
 _data = {
@@ -1946,10 +1946,10 @@ offset_bottom = 23.0
 [node name="Enemies" type="Node" parent="." unique_id=233007903]
 
 [node name="CharacterBody2D2" parent="Enemies" unique_id=994547376 instance=ExtResource("14_trtic")]
-position = Vector2(784, -64)
+position = Vector2(777, -49)
 
 [node name="CharacterBody2D" parent="Enemies" unique_id=1625210776 instance=ExtResource("14_trtic")]
-position = Vector2(891, -336)
+position = Vector2(878, -320)
 
 [node name="OpeningCutscene" type="Node" parent="." unique_id=1918661013]
 
