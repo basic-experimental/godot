@@ -2013,6 +2013,7 @@ theme_override_font_sizes/font_size = 8
 text = "Need sustenance"
 
 [node name="Fence" type="TileMapLayer" parent="OpeningCutscene" unique_id=41215802]
+visible = false
 tile_map_data = PackedByteArray("AAAEAAEAAAAAAAQAAAAEAAIAAAAAAAUAAAAFAAEAAAABAAQAAAAFAAIAAAABAAUAAAAGAAEAAAAAAAQAAAAGAAIAAAAAAAUAAAAHAAEAAAABAAQAAAAHAAIAAAABAAUAAAAIAAEAAAAAAAQAAAAIAAIAAAAAAAUAAAA=")
 tile_set = SubResource("TileSet_cc37w")
 
