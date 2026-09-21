@@ -26,6 +26,11 @@ Date: 9/13/26
 Date: 9/14/26
 	-Updated Gompei sprites with outline
 	-Updated abilities with sprites
+	
+Date: 9/20/26
+	-Implemented 2nd world and transition
+	-Implemented opening cutscene
+	-Added enemy sprites and movement
 
 
 

@@ -3,8 +3,17 @@ extends Node
 @onready var player: CharacterBody2D = $"/root/Game/Player"
 @onready var camera = $Path2D/PathFollow2D/CutsceneCamera
 @onready var gompei = $GompeiWalk
+@onready var start_cutscene = $/root/Game/OpeningCutscene/StartCutscene
+
 var is_cutscene = false
 var player_entered_area = false
+var start_cutscene_played = false
+
+func _ready() -> void:
+	if !start_cutscene_played:
+		start_cutscene.play("StartAnimation")
+		start_cutscene_played = true
+
 
 func _on_cutscene_detection_body_entered(body: Node2D) -> void:
 	print("Body entered: ", body.name, " | Groups: ", body.get_groups())
