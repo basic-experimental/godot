@@ -7,13 +7,14 @@ extends Node
 
 var is_cutscene = false
 var player_entered_area = false
-var start_cutscene_played = false
 
 func _ready() -> void:
-	if !start_cutscene_played:
+	if !Cutscene.cutscene_played:
 		start_cutscene.play("StartAnimation")
-		start_cutscene_played = true
-
+		Cutscene.cutscene_played = true
+	else:
+		start_cutscene.play("StartAnimation", -1, 0.0, true)
+	
 
 func _on_cutscene_detection_body_entered(body: Node2D) -> void:
 	print("Body entered: ", body.name, " | Groups: ", body.get_groups())
