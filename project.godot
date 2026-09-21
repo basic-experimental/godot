@@ -22,6 +22,7 @@ boot_splash/minimum_display_time=3000
 [autoload]
 
 Music="*uid://dy22qhwo0d7dh"
+Cutscene="*uid://cx55x2vfceqfo"
 
 [display]
 
