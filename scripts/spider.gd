@@ -23,8 +23,11 @@ func _process(delta: float) -> void:
 	# Turn anound when on a ledge
 	if(!ray_cast_2d_l.is_colliding()):
 		direction = 1
-	elif(!ray_cast_2d_r.is_colliding()):
+		print("ray l")
+	
+	if(!ray_cast_2d_r.is_colliding()):
 		direction = -1
+		print("ray r")
 	
 	
 	animated_sprite_2d.flip_h = (direction == -1)
@@ -35,5 +38,7 @@ func _process(delta: float) -> void:
 		var normal = collision.get_normal()
 		if(abs(normal.angle() - Vector2.LEFT.angle()) < PI / 4):
 			direction = -1
+			print("collide l")
 		elif(abs(normal.angle() - Vector2.RIGHT.angle()) < PI / 4):
 			direction = 1
+			print("collide r")
