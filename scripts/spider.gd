@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var game_manager: Node = %GameManager
+@onready var game_manager = $"/root/Game/GameManager"
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var ray_cast_2d_l: RayCast2D = $RayCast2D_L

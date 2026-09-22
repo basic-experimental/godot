@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://bi6x6jf0mvjhk"]
+
+[ext_resource type="Texture2D" uid="uid://cqewwquthmmd3" path="res://assets/sprites/BabyAlienBoss-Sheet.png" id="1_eynm2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ig5k"]
+atlas = ExtResource("1_eynm2")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gw42l"]
+atlas = ExtResource("1_eynm2")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_edv8j"]
+atlas = ExtResource("1_eynm2")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o02xv"]
+atlas = ExtResource("1_eynm2")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cs582"]
+atlas = ExtResource("1_eynm2")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfyq2"]
+atlas = ExtResource("1_eynm2")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85kei"]
+atlas = ExtResource("1_eynm2")
+region = Rect2(1152, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kitqk"]
+atlas = ExtResource("1_eynm2")
+region = Rect2(1280, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfnkn"]
+atlas = ExtResource("1_eynm2")
+region = Rect2(1408, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2r62o"]
+atlas = ExtResource("1_eynm2")
+region = Rect2(1536, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncbpu"]
+atlas = ExtResource("1_eynm2")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c56gl"]
+atlas = ExtResource("1_eynm2")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhtao"]
+atlas = ExtResource("1_eynm2")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bctax"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ig5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gw42l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_edv8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o02xv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cs582")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfyq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85kei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kitqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfnkn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2r62o")
+}],
+"loop": 1,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ncbpu")
+}],
+"loop": 1,
+"name": &"Hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c56gl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhtao")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bctax"]
+size = Vector2(128, 128)
+
+[node name="Boss" type="Node2D" unique_id=1844773469]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1729646403]
+sprite_frames = SubResource("SpriteFrames_bctax")
+animation = &"Attack"
+autoplay = "Attack"
+frame = 8
+frame_progress = 0.57184136
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1430105351]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1126316303]
+shape = SubResource("RectangleShape2D_bctax")

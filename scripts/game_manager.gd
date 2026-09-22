@@ -3,29 +3,25 @@ extends Node
 @onready var player: CharacterBody2D = $"/root/Game/Player"
 @onready var camera = $Path2D/PathFollow2D/CutsceneCamera
 @onready var gompei = $GompeiWalk
-@onready var start_cutscene = $/root/Game/OpeningCutscene/StartCutscene
+@onready var start_cutscene = $"/root/Game/OpeningCutscene/StartCutscene"
 
 var is_cutscene = false
 var player_entered_area = false
+var cutscene_played: bool = false
 
 func _ready() -> void:
-	if !Cutscene.cutscene_played:
-		start_cutscene.play("StartAnimation")
-		Cutscene.cutscene_played = true
-	else:
-		start_cutscene.play("StartAnimation", -1, 0.0, true)
-	
+	pass
 
 func _on_cutscene_detection_body_entered(body: Node2D) -> void:
-	print("Body entered: ", body.name, " | Groups: ", body.get_groups())
+	print("Body entered: ", body.name, " Groups: ", body.get_groups())
 	if body == player:
-		if !player_entered_area:
+		if not player_entered_area:
 			player_entered_area = true
 			rocket_cutscene()
 
-func rocket_cutscene():
-	print("rocket_cutscene triggered")
-	gompei.set_visibility_layer_bit(1,true)
+func rocket_cutscene() -> void:
+	print("rocket cutscene triggered")
+	gompei.set_visibility_layer_bit(1, true)
 	is_cutscene = true
 	player.set_physics_process(false)
 	player.velocity = Vector2.ZERO

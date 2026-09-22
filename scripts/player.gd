@@ -4,6 +4,10 @@ extends CharacterBody2D
 
 const SFX_JUMP = preload("res://assets/sounds/GoatJumpsfx.wav")
 const SFX_WALK = preload("res://assets/sounds/GoatWalksfx.wav")
+const SFX_HURT = preload("res://assets/sounds/GompeiGetsHurt.wav")
+const SFX_FIRE = preload("res://assets/sounds/GomepiFireAbility.wav")
+const SFX_Statue = preload("res://assets/sounds/GompeiTurnsIntoStatue.wav")
+const SFX_Jetpack = preload("res://assets/sounds/GompeiJetpackAbility.wav")
 const SPEED = 130.0
 const ACCELERATION = 300.0
 const JUMP_VELOCITY = -350.0
@@ -73,6 +77,7 @@ func _physics_process(delta: float) -> void:
 		if  !is_slamming && !is_on_floor() && Input.is_action_just_pressed("slam"):
 			is_slamming = true
 			velocity.x = 0
+			play_player_sound(SFX_Statue)
 		elif is_slamming && is_on_floor() && Input.is_action_just_released("slam"):
 			is_slamming = false
 	
@@ -84,24 +89,30 @@ func _physics_process(delta: float) -> void:
 		if !is_rocketing && !is_on_floor() && !rocket_on_cooldown && Input.is_action_just_pressed("rocket"):
 			is_rocketing = true
 			rocket_start_time = TIME
+			play_player_sound(SFX_Jetpack)
 		elif is_rocketing && Input.is_action_just_released("rocket"):
 			is_rocketing = false
 			rocket_on_cooldown = true
+			stop_if_sound(SFX_Jetpack)
 		elif is_rocketing && TIME - rocket_start_time >= ROCKET_TIME:
 			is_rocketing = false
 			rocket_on_cooldown = true
+			stop_if_sound(SFX_Jetpack)
 			
 	# Fire
 	if power_up == PowerUp.Fire or power_up == PowerUp.All:
 		if !is_firing && is_on_floor() && TIME - fire_end_time >= FIRE_COOLDOWN && Input.is_action_just_pressed("fire"):
 			is_firing = true
 			fire_start_time = TIME
+			play_player_sound(SFX_FIRE)
 		elif is_firing && Input.is_action_just_released("fire"):
 			is_firing = false
 			fire_end_time = TIME
+			stop_if_sound(SFX_FIRE)
 		elif is_firing && TIME - fire_start_time >= FIRE_TIME:
 			is_firing = false
 			fire_end_time = TIME
+			stop_if_sound(SFX_FIRE)
 	
 	# Get the input direction and handle the movement/deceleration
 	if !is_slamming && !is_rocketing:
@@ -170,6 +181,10 @@ func _physics_process(delta: float) -> void:
 				collider.health -= 1
 				is_charging = false
 	
-func play_player_sound(stream: AudioStream):
+func play_player_sound(stream: AudioStream) -> void:
 	player_sfx.stream = stream
 	player_sfx.play()
+
+func stop_if_sound(stream: AudioStream) -> void:
+	if player_sfx.stream == stream and player_sfx.is_playing():
+		player_sfx.stop()
