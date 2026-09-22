@@ -2151,10 +2151,10 @@ offset_bottom = 23.0
 [node name="Enemies" type="Node" parent="." unique_id=233007903]
 
 [node name="CharacterBody2D2" parent="Enemies" unique_id=994547376 instance=ExtResource("14_trtic")]
-position = Vector2(784, -72)
+position = Vector2(784, -208)
 
 [node name="CharacterBody2D" parent="Enemies" unique_id=1625210776 instance=ExtResource("14_trtic")]
-position = Vector2(832, -344)
+position = Vector2(832, -320)
 
 [node name="OpeningCutscene" type="Node" parent="." unique_id=1918661013]
 
