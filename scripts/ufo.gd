@@ -5,20 +5,33 @@ extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var ray_cast_2d_l: RayCast2D = $RayCast2D_L
 @onready var ray_cast_2d_r: RayCast2D = $RayCast2D_R
+@onready var killzone: Area2D = $Killzone
 
 const SPEED = 60
+const ABDUCT_COOLDOWN = 5000 #ms
+const ABDUCT_TIME = 2000 #ms
+
 var direction = 1
 var health = 3
+var is_abducting = false
+var abduct_start_time = 0
+var abduct_end_time = -ABDUCT_COOLDOWN
+
+func _ready():
+	killzone.enabled = false
 
 func _process(delta: float) -> void:
+	var TIME = Time.get_ticks_msec()
 	if(health <= 0):
 		queue_free()
 	
-	# Enable player collision while charging
-	if(game_manager.player.is_charging):
-		set_collision_layer_value(1, true)
-	else:
-		set_collision_layer_value(1, false)
+	if(!is_abducting && TIME - abduct_end_time >= ABDUCT_COOLDOWN && killzone.is_colliding):
+		is_abducting = true
+		abduct_start_time = TIME
+		animated_sprite_2d.play("abduct")
+		
+	if(is_abducting && TIME - abduct_start_time >= ABDUCT_TIME):
+		killzone.enabled = true
 	
 	# Turn anound when on a ledge
 	if(!ray_cast_2d_l.is_colliding()):
@@ -26,7 +39,6 @@ func _process(delta: float) -> void:
 	
 	if(!ray_cast_2d_r.is_colliding()):
 		direction = -1
-	
 	
 	animated_sprite_2d.flip_h = (direction == -1)
 	position.x += direction * SPEED * delta

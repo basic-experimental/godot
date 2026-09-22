@@ -31,6 +31,14 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 "
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xf4xf"]
+atlas = ExtResource("2_1aa4c")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gp6nc"]
+atlas = ExtResource("2_1aa4c")
+region = Rect2(192, 0, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_vvsiw"]
 atlas = ExtResource("2_1aa4c")
 region = Rect2(0, 0, 64, 64)
@@ -43,13 +51,24 @@ region = Rect2(64, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_xf4xf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gp6nc")
+}],
+"loop": 1,
+"name": &"abduct",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_vvsiw")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_linyg")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"idle",
 "speed": 3.0
 }]
 
@@ -65,8 +84,9 @@ script = SubResource("GDScript_xf4xf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=990840530]
 sprite_frames = SubResource("SpriteFrames_55c7s")
-autoplay = "default"
-frame_progress = 0.15297063
+animation = &"abduct"
+autoplay = "idle"
+frame_progress = 0.0065279403
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=219606498]
 position = Vector2(0, -18)
@@ -85,3 +105,5 @@ target_position = Vector2(0, 48)
 [node name="RayCast2D_R" type="RayCast2D" parent="." unique_id=364887637]
 position = Vector2(28, -9)
 target_position = Vector2(0, 48)
+
+[connection signal="body_exited" from="Killzone" to="." method="_on_killzone_body_exited"]
