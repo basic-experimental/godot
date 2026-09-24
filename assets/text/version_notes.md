@@ -31,6 +31,11 @@ Date: 9/20/26
 	-Implemented 2nd world and transition
 	-Implemented opening cutscene
 	-Added enemy sprites and movement
+	
+Date: 9/22/26
+	-Added work for boss sprites and sound effects
+	-Improved 2nd world and added cutscene
+	-Fixed ramming animation in gameplay
 
 
 
