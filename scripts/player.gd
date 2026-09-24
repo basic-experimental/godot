@@ -39,10 +39,17 @@ var rocket_start_time = 0
 var rocket_on_cooldown = false
 var fire_start_time = 0
 var fire_end_time = -FIRE_COOLDOWN
+var is_being_abducted = false
 
 func _physics_process(delta: float) -> void:
 	var TIME = Time.get_ticks_msec()
+	# --- ABDUCTION ---
+	if(is_being_abducted && !Input.is_action_just_pressed("slam")):
+		animated_sprite.play("idle")
+		return
+		
 	# --- MOVEMENT ---
+	
 	# Gravity
 	if !is_on_floor():
 		if is_slamming:
@@ -70,10 +77,11 @@ func _physics_process(delta: float) -> void:
 		
 	# Slam
 	if power_up == PowerUp.Slam or power_up == PowerUp.All:
-		if  !is_slamming && !is_on_floor() && Input.is_action_just_pressed("slam"):
+		if  !is_slamming && Input.is_action_just_pressed("slam"):
 			is_slamming = true
 			velocity.x = 0
-		elif is_slamming && is_on_floor() && Input.is_action_just_released("slam"):
+			is_being_abducted = false
+		elif is_slamming && Input.is_action_just_released("slam"):
 			is_slamming = false
 	
 	# Rocket

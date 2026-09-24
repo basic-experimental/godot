@@ -1,35 +1,8 @@
 [gd_scene format=3 uid="uid://baw5lfkb5mv3g"]
 
+[ext_resource type="Script" uid="uid://dfpmak4elyvoi" path="res://scripts/ufo.gd" id="1_gp6nc"]
 [ext_resource type="Texture2D" uid="uid://b8bj55xtodxge" path="res://assets/sprites/UFOAlienEnemy-Sheet.png" id="2_1aa4c"]
 [ext_resource type="PackedScene" uid="uid://caybaaxou081g" path="res://scenes/killzone.tscn" id="3_vvsiw"]
-
-[sub_resource type="GDScript" id="GDScript_xf4xf"]
-script/source = "extends CharacterBody2D
-
-
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-
-
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis(\"ui_left\", \"ui_right\")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
-	move_and_slide()
-"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xf4xf"]
 atlas = ExtResource("2_1aa4c")
@@ -76,11 +49,11 @@ animations = [{
 size = Vector2(56, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k5hg5"]
-size = Vector2(43, 47.5)
+size = Vector2(2, 40.5)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=994547376 groups=["enemy"]]
 collision_layer = 4
-script = SubResource("GDScript_xf4xf")
+script = ExtResource("1_gp6nc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=990840530]
 sprite_frames = SubResource("SpriteFrames_55c7s")
@@ -95,7 +68,7 @@ shape = SubResource("RectangleShape2D_55c7s")
 [node name="Killzone" parent="." unique_id=1272656417 instance=ExtResource("3_vvsiw")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=915688875]
-position = Vector2(0, 15.25)
+position = Vector2(0, 11.75)
 shape = SubResource("RectangleShape2D_k5hg5")
 
 [node name="RayCast2D_L" type="RayCast2D" parent="." unique_id=803411127]
