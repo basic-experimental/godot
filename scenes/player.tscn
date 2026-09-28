@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bnetmnf750goh" path="res://assets/WPI Goat Sprite/WPIGoatWithOutline.png" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://b83ef8cexxpn8" path="res://assets/WPI Goat Sprite/WPIGoatBreathingFire-Sheet.png" id="1_qlg0r"]
-[ext_resource type="Texture2D" uid="uid://dk4jv40bgtek6" path="res://assets/WPI Goat Sprite/WPIRammingAbilityWithOutline.png" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://c241jh3ekjq1h" path="res://assets/WPI Goat Sprite/WPIRammingAbilityWithOutline.png" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://cu3wcf8nr24dt" path="res://assets/WPI Goat Sprite/WPIGoatJetpackAbility.png" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://cykn6ukek7vnw" path="res://assets/WPI Goat Sprite/GoatStatueAbility.png" id="3_qhqgy"]
 
