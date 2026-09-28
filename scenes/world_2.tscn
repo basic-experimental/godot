@@ -698,7 +698,7 @@ sources/1 = SubResource("TileSetAtlasSource_hgrhv")
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bctax"]
 distance = -144.0
 
-[node name="World2" type="Node2D" unique_id=2054894990]
+[node name="Game" type="Node2D" unique_id=2054894990]
 
 [node name="OpeningCutscene" type="Node" parent="." unique_id=1895631560]
 
