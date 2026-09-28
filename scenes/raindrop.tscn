@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://ba7617jo18qhy"]
+
+[ext_resource type="Script" uid="uid://cb5xr33rvcjq8" path="res://scenes/raindrop.gd" id="1_yjn3f"]
+[ext_resource type="Texture2D" uid="uid://pdicri4p3pnr" path="res://assets/sprites/BossProjectile.png" id="2_l04qk"]
+[ext_resource type="PackedScene" uid="uid://caybaaxou081g" path="res://scenes/killzone.tscn" id="3_3qp30"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grlj0"]
+atlas = ExtResource("2_l04qk")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v82c6"]
+atlas = ExtResource("2_l04qk")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_55c7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grlj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v82c6")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_55c7s"]
+size = Vector2(10, 16)
+
+[node name="Raindrop" type="Node2D" unique_id=658995315]
+script = ExtResource("1_yjn3f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=561449477]
+sprite_frames = SubResource("SpriteFrames_55c7s")
+autoplay = "default"
+
+[node name="Killzone" parent="." unique_id=1272656417 instance=ExtResource("3_3qp30")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=400273377]
+shape = SubResource("RectangleShape2D_55c7s")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2100194215]
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
