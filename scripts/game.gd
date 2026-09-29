@@ -5,10 +5,30 @@ extends Node2D
 @onready var cutscene_camera: Camera2D = $OpeningCutscene/StartCutsceneCamera
 @onready var player: CharacterBody2D = $"/root/Game/Player"
 @onready var player_camera: Camera2D = $Player/Camera2D 
+@onready var other_gompei: AnimatedSprite2D = $OpeningCutscene/GompeiRam
+@onready var cow1: AnimatedSprite2D = $OpeningCutscene/Cow1
+@onready var cow2: AnimatedSprite2D = $OpeningCutscene/Cow2
+@onready var cow3: AnimatedSprite2D = $OpeningCutscene/Cow3
+@onready var fence: TileMapLayer = $OpeningCutscene/Fence
 var cutscene_ended: bool = false
 
 func _ready() -> void:
-	anim_player.play("StartAnimation")
+	if !Cutscene.start_cutscene_played:
+		Cutscene.start_cutscene_played = true
+		anim_player.play("StartAnimation")
+		await anim_player.animation_finished
+		fence.visibility_layer = 0
+		player.position = Vector2(107, 50)
+	else:
+		player.visible = true
+		other_gompei.visible = false
+		cow1.visible = false
+		cow2.visible = false
+		cow3.visible = false
+		fence.visibility_layer = 0
+		player.position = Vector2(107, 50)
+		cutscene_camera.enabled = false
+		player_camera.enabled = true
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not cutscene_ended and event.is_action_pressed("ui_cancel"):
@@ -46,3 +66,6 @@ func finish_cutscene() -> void:
 	if not bg_music.playing:
 		bg_music.stream = load("res://assets/music/Level1MusicRedo.wav")
 		bg_music.play()
+		
+	fence.visibility_layer = 0
+	player.position = Vector2(107, 50)

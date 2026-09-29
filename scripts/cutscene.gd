@@ -1,3 +1,4 @@
 extends Node
 
-var cutscene_played
+var start_cutscene_played = false
+var world2_cutscene_played = false
