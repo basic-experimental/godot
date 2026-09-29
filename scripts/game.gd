@@ -10,6 +10,7 @@ extends Node2D
 @onready var cow2: AnimatedSprite2D = $OpeningCutscene/Cow2
 @onready var cow3: AnimatedSprite2D = $OpeningCutscene/Cow3
 @onready var fence: TileMapLayer = $OpeningCutscene/Fence
+
 var cutscene_ended: bool = false
 
 func _ready() -> void:
@@ -17,18 +18,10 @@ func _ready() -> void:
 		Cutscene.start_cutscene_played = true
 		anim_player.play("StartAnimation")
 		await anim_player.animation_finished
-		fence.visibility_layer = 0
-		player.position = Vector2(107, 50)
+		finish_cutscene()
 	else:
-		player.visible = true
-		other_gompei.visible = false
-		cow1.visible = false
-		cow2.visible = false
-		cow3.visible = false
-		fence.visibility_layer = 0
-		player.position = Vector2(107, 50)
-		cutscene_camera.enabled = false
-		player_camera.enabled = true
+		# Player died & scene reloaded: snap everything to gameplay state
+		finish_cutscene()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not cutscene_ended and event.is_action_pressed("ui_cancel"):
@@ -49,23 +42,29 @@ func finish_cutscene() -> void:
 	
 	anim_player.stop()
 	
-	# Disable the cutscene camera so the view switches
+	# Cutscene elements cleanup
+	other_gompei.visible = false
+	cow1.visible = false
+	cow2.visible = false
+	cow3.visible = false
+	fence.visibility_layer = 0
+	
+	# Switch cameras
 	if cutscene_camera:
 		cutscene_camera.enabled = false
-	
-	# Enable the player's camera
 	if player_camera:
 		player_camera.enabled = true
 	
-	# Unhide and enable the player
+	# Unhide and reposition player
 	if player:
 		player.visible = true
+		player.position = Vector2(107, 50)
 		player.set_physics_process(true)
 	
 	# Start background music
+	start_music()
+
+func start_music() -> void:
 	if not bg_music.playing:
 		bg_music.stream = load("res://assets/music/Level1MusicRedo.wav")
 		bg_music.play()
-		
-	fence.visibility_layer = 0
-	player.position = Vector2(107, 50)

@@ -11,6 +11,7 @@ func _physics_process(delta: float) -> void:
 		player.play_player_sound(player.SFX_HURT)
 		player.get_node("CollisionShape2D").queue_free()
 		timer.start()
+		
 
 func _on_timer_timeout() -> void:
 	Engine.time_scale = 1

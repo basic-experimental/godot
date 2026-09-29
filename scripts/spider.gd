@@ -6,36 +6,54 @@ extends CharacterBody2D
 @onready var ray_cast_2d_r: RayCast2D = $RayCast2D_R
 
 const SPEED = 60
+const SFX_KILL = preload("res://assets/sounds/KillsAnEnemy.wav")
+
 var direction = 1
 var health = 3
+var is_dying: bool = false
 
 func _process(delta: float) -> void:
+	if health <= 0 and not is_dying:
+		die()
+		return
 	
-	if(health <= 0):
-		queue_free()
-	
-	# Enable player collision while charging
-	if(player.is_charging):
+	if is_dying:
+		return
+		
+	# Enable collision while charging or slamming
+	if player and (player.is_charging or player.is_slamming):
 		set_collision_layer_value(1, true)
 	else:
 		set_collision_layer_value(1, false)
 	
-	# Turn anound when on a ledge
-	if(!ray_cast_2d_l.is_colliding()):
+	# Turn around when on a ledge
+	if !ray_cast_2d_l.is_colliding():
 		direction = 1
 	
-	if(!ray_cast_2d_r.is_colliding()):
+	if !ray_cast_2d_r.is_colliding():
 		direction = -1
 	
 	animated_sprite_2d.flip_h = (direction == -1)
 	position.x += direction * SPEED * delta
 	move_and_slide()
+	
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
 		var normal = collision.get_normal()
-		if(abs(normal.angle() - Vector2.LEFT.angle()) < PI / 4):
+		if abs(normal.angle() - Vector2.LEFT.angle()) < PI / 4:
 			direction = -1
-			print("collide l")
-		elif(abs(normal.angle() - Vector2.RIGHT.angle()) < PI / 4):
+		elif abs(normal.angle() - Vector2.RIGHT.angle()) < PI / 4:
 			direction = 1
-			print("collide r")
+
+func die() -> void:
+	is_dying = true
+	
+	# Spawn a detached sound player so it plays after queue_free()
+	var sfx = AudioStreamPlayer2D.new()
+	sfx.stream = SFX_KILL
+	sfx.global_position = global_position
+	get_parent().add_child(sfx)
+	sfx.play()
+	sfx.finished.connect(sfx.queue_free)
+	
+	queue_free()

@@ -9,12 +9,16 @@
 [ext_resource type="Texture2D" uid="uid://c414e4k7t2wdo" path="res://assets/WPI Goat Sprite/GompeiRocket-Sheet.png" id="4_kvuet"]
 [ext_resource type="AudioStream" uid="uid://c5qhyb43cdcm3" path="res://assets/sounds/GoatWalksfx.wav" id="5_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://dcy1svfk8mgd8" path="res://assets/sprites/PerpetualDancingCow.png" id="5_rysoc"]
+[ext_resource type="AudioStream" uid="uid://dbocssexqieq8" path="res://assets/sounds/GoatJumpsfx.wav" id="5_suyxu"]
 [ext_resource type="Texture2D" uid="uid://8awg2y3mox6x" path="res://assets/sprites/TerrainWithFence.png" id="6_dinhu"]
+[ext_resource type="AudioStream" uid="uid://b2jd5tfb07k24" path="res://assets/music/SecondCutsceneIntoSpaceMusic.wav" id="6_sgl2t"]
 [ext_resource type="Texture2D" uid="uid://b8bj55xtodxge" path="res://assets/sprites/UFOAlienEnemy-Sheet.png" id="6_ssvqc"]
 [ext_resource type="Texture2D" uid="uid://d2ny608707bua" path="res://assets/Tileset.png" id="6_trtic"]
 [ext_resource type="FontFile" uid="uid://drhvcqvj53xwt" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="8_gee14"]
+[ext_resource type="AudioStream" uid="uid://bf4u5s8etsth0" path="res://assets/sounds/RocketLaunchingSound.wav" id="8_sgl2t"]
 [ext_resource type="Texture2D" uid="uid://dwr6vj73bapsy" path="res://assets/Farmhouse.png" id="9_vtaks"]
 [ext_resource type="Texture2D" uid="uid://b6eju8jkw84pj" path="res://assets/RobertGoddardStickMan-Sheet.png" id="10_dinhu"]
+[ext_resource type="Script" uid="uid://b8g1bllv2fiiq" path="res://scenes/MusicController.gd" id="11_qnb83"]
 [ext_resource type="FontFile" uid="uid://bnj1346fn3m6p" path="res://assets/fonts/PixelOperator8.ttf" id="12_kvuet"]
 [ext_resource type="PackedScene" uid="uid://bmmctyphy3pay" path="res://scenes/spider.tscn" id="14_trtic"]
 [ext_resource type="Script" uid="uid://cipgq73mfnmf5" path="res://scripts/ufo_1.gd" id="18_1kice"]
@@ -25,8 +29,7 @@
 [ext_resource type="AudioStream" uid="uid://drkn0isvy84by" path="res://assets/sounds/RobertGoddardTalking.wav" id="20_bt5mj"]
 [ext_resource type="Script" uid="uid://dhvj2dxbds4l5" path="res://scripts/gompei_ram.gd" id="21_5newe"]
 [ext_resource type="AudioStream" uid="uid://l10fabgturnl" path="res://assets/sounds/RammingOrGalloping.wav" id="22_bhx41"]
-[ext_resource type="AudioStream" uid="uid://cvw6ajbilo5ht" path="res://assets/sounds/GompeiHitsSomethingForRamming.wav" id="23_qnb83"]
-[ext_resource type="PackedScene" uid="uid://baw5lfkb5mv3g" path="res://scenes/ufo.tscn" id="27_qnb83"]
+[ext_resource type="AudioStream" uid="uid://cvw6ajbilo5ht" path="res://assets/sounds/KillsAnEnemy.wav" id="23_qnb83"]
 
 [sub_resource type="Curve2D" id="Curve2D_kvpfn"]
 _data = {
@@ -37,6 +40,10 @@ point_count = 3
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhx41"]
 atlas = ExtResource("2_kvuet")
 region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s33c4"]
+atlas = ExtResource("2_kvuet")
+region = Rect2(384, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qnb83"]
 atlas = ExtResource("2_kvuet")
@@ -75,6 +82,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bhx41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s33c4")
 }],
 "loop": 1,
 "name": &"idle",
@@ -308,7 +318,7 @@ tracks/7/keys = {
 }
 tracks/8/type = "value"
 tracks/8/imported = false
-tracks/8/enabled = true
+tracks/8/enabled = false
 tracks/8/path = NodePath("GompeiWalk:animation")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
@@ -318,6 +328,84 @@ tracks/8/keys = {
 "update": 1,
 "values": [&"walking", &"idle"]
 }
+tracks/9/type = "audio"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("%GameManager/../Player/AudioStreamPlayer2D")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_kvpfn")
+}, {
+"end_offset": 0.0,
+"start_offset": 1.6337806,
+"stream": ExtResource("20_bt5mj")
+}, {
+"end_offset": 0.7671821,
+"start_offset": 0.85902804,
+"stream": ExtResource("20_bt5mj")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_sgl2t")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.01954874,
+"stream": ExtResource("8_sgl2t")
+}],
+"times": PackedFloat32Array(0, 1.7333333, 4.133333, 7.9333334, 8.880451)
+}
+tracks/9/use_blend = true
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("GompeiWalk")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 1.7333333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["walking"],
+"method": &"play_anim"
+}, {
+"args": ["idle"],
+"method": &"play_anim"
+}]
+}
+tracks/11/type = "audio"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("%GameManager/../Player/AudioStreamPlayer2D")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_suyxu")
+}],
+"times": PackedFloat32Array(6.8)
+}
+tracks/11/use_blend = true
+tracks/12/type = "audio"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("%GameManager/../Player/AudioStreamPlayer2D")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 2.876263,
+"stream": ExtResource("6_sgl2t")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/12/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kvuet"]
 _data = {
@@ -2117,6 +2205,7 @@ scale = Vector2(0.84375, 0.84375)
 sprite_frames = SubResource("SpriteFrames_bb217")
 animation = &"idle"
 autoplay = "walking"
+script = ExtResource("21_5newe")
 
 [node name="Cutscene" type="AnimationPlayer" parent="GameManager" unique_id=1601393777]
 libraries/ = SubResource("AnimationLibrary_kvuet")
@@ -2173,6 +2262,7 @@ stream = ExtResource("5_kvpfn")
 position = Vector2(105, -64)
 volume_db = -15.269
 autoplay = true
+script = ExtResource("11_qnb83")
 
 [node name="Killzone" parent="." unique_id=1272656417 instance=ExtResource("3_p57ef")]
 
@@ -2322,11 +2412,11 @@ offset_bottom = -105.0
 text = "Press Esc to Skip"
 label_settings = SubResource("LabelSettings_sww3w")
 
-[node name="CharacterBody2D" parent="." unique_id=393434540 instance=ExtResource("27_qnb83")]
-position = Vector2(1696, -160)
+[node name="CharacterBody2D" parent="." unique_id=1003118915 instance=ExtResource("14_trtic")]
+position = Vector2(1696, -144)
 
-[node name="CharacterBody2D2" parent="." unique_id=1304900343 instance=ExtResource("27_qnb83")]
-position = Vector2(2024, -176)
+[node name="CharacterBody2D2" parent="." unique_id=200245396 instance=ExtResource("14_trtic")]
+position = Vector2(2016, -160)
 
 [connection signal="body_entered" from="GameManager/CutsceneDetection" to="GameManager" method="_on_cutscene_detection_body_entered"]
 [connection signal="animation_finished" from="OpeningCutscene/StartCutscene" to="." method="_on_start_cutscene_animation_finished"]
