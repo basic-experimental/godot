@@ -11,6 +11,7 @@ var direction = 1
 var health = 3
 
 func _process(delta: float) -> void:
+	if(game_manager == null): return # Why does this still run after the scene is changed?
 	if(health <= 0):
 		queue_free()
 	
