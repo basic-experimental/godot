@@ -775,6 +775,9 @@ sources/1 = SubResource("TileSetAtlasSource_hgrhv")
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bctax"]
 distance = -144.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cc37w"]
+size = Vector2(58, 233)
+
 [node name="Game" type="Node2D" unique_id=2054894990]
 script = ExtResource("1_a2svu")
 
@@ -834,10 +837,10 @@ tile_set = SubResource("TileSet_dr8ba")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1894549304]
 z_index = -21
-offset_left = -656.0
-offset_top = -1649.0
-offset_right = 2744.0
-offset_bottom = 699.0
+offset_left = -660.0
+offset_top = -1687.0
+offset_right = 2740.0
+offset_bottom = 661.0
 color = Color(0, 0, 0, 1)
 
 [node name="Killzone" parent="." unique_id=1272656417 instance=ExtResource("8_hgrhv")]
@@ -870,3 +873,18 @@ position = Vector2(344, -669)
 
 [node name="CharacterBody2D7" parent="." unique_id=1130894310 instance=ExtResource("11_phgsc")]
 position = Vector2(784, -800)
+
+[node name="BossArena" type="Area2D" parent="." unique_id=1969706041]
+position = Vector2(1436, -959.5)
+collision_layer = 3
+collision_mask = 3
+
+[node name="BossArenaDetection" type="CollisionShape2D" parent="BossArena" unique_id=995675232]
+shape = SubResource("RectangleShape2D_cc37w")
+
+[node name="BossArenaTrap" type="TileMapLayer" parent="BossArena" unique_id=340469466]
+position = Vector2(-48, 0)
+tile_map_data = PackedByteArray("AAABAPv/AQAIAAsAAAABAPz/AQAIAAsAAAABAP3/AQAIAAsAAAABAP7/AQAIAAsAAAABAP//AQAIAAsAAAABAAAAAQAIAAsAAAABAAEAAQAIAAsAAAABAAIAAQAIAAsAAAABAAMAAQAIAAsAAAABAAQAAQAIAAsAAAABAAUAAQAIAAsAAAABAAYAAQAIAAsAAAABAPj/AQAIAAsAAAABAPn/AQAIAAsAAAABAPr/AQAIAAsAAAABAAcAAQAIAAsAAAA=")
+tile_set = SubResource("TileSet_dr8ba")
+
+[connection signal="body_entered" from="BossArena" to="." method="_on_boss_arena_body_entered"]
