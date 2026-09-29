@@ -9,9 +9,6 @@ var is_cutscene = false
 var player_entered_area = false
 var cutscene_played: bool = false
 
-func _ready() -> void:
-	pass
-
 func _on_cutscene_detection_body_entered(body: Node2D) -> void:
 	print("Body entered: ", body.name, " Groups: ", body.get_groups())
 	if body == player:

@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 @onready var player = $"/root/Game/Player"
-
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var ray_cast_2d_l: RayCast2D = $RayCast2D_L
 @onready var ray_cast_2d_r: RayCast2D = $RayCast2D_R
@@ -11,6 +10,7 @@ var direction = 1
 var health = 3
 
 func _process(delta: float) -> void:
+	
 	if(health <= 0):
 		queue_free()
 	
