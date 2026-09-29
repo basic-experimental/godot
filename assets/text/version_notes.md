@@ -1,6 +1,8 @@
 #Version Notes
 I'm the version notes!
 
+*There is currently no way to kill the final boss.
+
 Date: 8/31/26
 	- Added Goat Asset sprite sheet made with aseprite
 		- First 8 frames are walking animation 
@@ -36,6 +38,20 @@ Date: 9/22/26
 	-Added work for boss sprites and sound effects
 	-Improved 2nd world and added cutscene
 	-Fixed ramming animation in gameplay
+	
+Date: 9/27/26
+	-Put boss sprite in world 
+	-Updated level design with new enemies and routes
+	-Added way to skip opening cutscene
+	
+Date: 9/28/26
+	-Fixed bug with cutscene playing every time on respawn
+	-Added sound effects for cutscenes
+	-Ufo enemy finished
+	
+Date: 9/29/26
+	-Made it so boss arena fixes camera
+	-Worked on more ways to kill enemies
 
 
 

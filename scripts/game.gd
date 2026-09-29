@@ -10,6 +10,7 @@ extends Node2D
 @onready var cow2: AnimatedSprite2D = $OpeningCutscene/Cow2
 @onready var cow3: AnimatedSprite2D = $OpeningCutscene/Cow3
 @onready var fence: TileMapLayer = $OpeningCutscene/Fence
+@onready var controls: Label = $Labels/Controls
 var cutscene_ended: bool = false
 
 func _ready() -> void:
@@ -19,6 +20,7 @@ func _ready() -> void:
 		await anim_player.animation_finished
 		fence.visibility_layer = 0
 		player.position = Vector2(107, 50)
+		controls.visible = true
 	else:
 		player.visible = true
 		other_gompei.visible = false
@@ -29,6 +31,7 @@ func _ready() -> void:
 		player.position = Vector2(107, 50)
 		cutscene_camera.enabled = false
 		player_camera.enabled = true
+		controls.visible = true
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not cutscene_ended and event.is_action_pressed("ui_cancel"):
@@ -69,3 +72,4 @@ func finish_cutscene() -> void:
 		
 	fence.visibility_layer = 0
 	player.position = Vector2(107, 50)
+	controls.visible = true
