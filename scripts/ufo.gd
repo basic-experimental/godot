@@ -21,11 +21,11 @@ func _ready():
 	killzone.enabled = false
 
 func _process(delta: float) -> void:
-	if Cutscene.world2_cutscene_played:
 		var TIME = Time.get_ticks_msec()
 	
 		if(player.is_being_abducted == false):
 			is_abducting = false
+			animated_sprite_2d.play("idle")
 	
 		if(health <= 0):
 			queue_free()

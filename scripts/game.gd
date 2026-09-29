@@ -10,7 +10,7 @@ extends Node2D
 @onready var cow2: AnimatedSprite2D = $OpeningCutscene/Cow2
 @onready var cow3: AnimatedSprite2D = $OpeningCutscene/Cow3
 @onready var fence: TileMapLayer = $OpeningCutscene/Fence
-
+@onready var controls: Label = $Labels/Controls
 var cutscene_ended: bool = false
 
 func _ready() -> void:
@@ -18,9 +18,22 @@ func _ready() -> void:
 		Cutscene.start_cutscene_played = true
 		anim_player.play("StartAnimation")
 		await anim_player.animation_finished
+		fence.visibility_layer = 0
+		player.position = Vector2(107, 50)
+		controls.visible = true
 		finish_cutscene()
 	else:
 		# Player died & scene reloaded: snap everything to gameplay state
+		player.visible = true
+		other_gompei.visible = false
+		cow1.visible = false
+		cow2.visible = false
+		cow3.visible = false
+		fence.visibility_layer = 0
+		player.position = Vector2(107, 50)
+		cutscene_camera.enabled = false
+		player_camera.enabled = true
+		controls.visible = true
 		finish_cutscene()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -68,3 +81,6 @@ func start_music() -> void:
 	if not bg_music.playing:
 		bg_music.stream = load("res://assets/music/Level1MusicRedo.wav")
 		bg_music.play()
+		fence.visibility_layer = 0
+		player.position = Vector2(107, 50)
+		controls.visible = true

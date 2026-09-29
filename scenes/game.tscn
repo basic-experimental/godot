@@ -2286,15 +2286,13 @@ offset_right = 247.0
 offset_bottom = -4.0
 theme_override_fonts/font = ExtResource("8_gee14")
 theme_override_font_sizes/font_size = 8
-text = "Hello Gompei this is test world :)
-
-[Space] [W] [Up] to jump
+text = "[Space] [W] [Up] to jump
 [A] [Left] to move left
 [D] [Right] to move right
 [Shift] to ram
-[Shift] in air to rocket
-[S] to ground pound
-[Q] or [E] on ground to fire"
+[Shift] in air to use rocket
+[S] [Down] to turn into  statue
+[Q] on ground to use fire"
 
 [node name="Robert" type="Label" parent="Labels" unique_id=292323994]
 visible = false
@@ -2333,7 +2331,7 @@ offset_bottom = 23.0
 [node name="Enemies" type="Node" parent="." unique_id=233007903]
 
 [node name="CharacterBody2D2" parent="Enemies" unique_id=994547376 instance=ExtResource("14_trtic")]
-position = Vector2(1456, -144)
+position = Vector2(1448, -142)
 
 [node name="CharacterBody2D" parent="Enemies" unique_id=1625210776 instance=ExtResource("14_trtic")]
 position = Vector2(832, -320)
