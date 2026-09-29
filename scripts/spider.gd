@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var game_manager = $"/root/Game/GameManager"
+@onready var player = $"/root/Game/Player"
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var ray_cast_2d_l: RayCast2D = $RayCast2D_L
@@ -11,12 +11,11 @@ var direction = 1
 var health = 3
 
 func _process(delta: float) -> void:
-	if(game_manager == null): return # Why does this still run after the scene is changed?
 	if(health <= 0):
 		queue_free()
 	
 	# Enable player collision while charging
-	if(game_manager.player.is_charging):
+	if(player.is_charging):
 		set_collision_layer_value(1, true)
 	else:
 		set_collision_layer_value(1, false)
@@ -24,12 +23,9 @@ func _process(delta: float) -> void:
 	# Turn anound when on a ledge
 	if(!ray_cast_2d_l.is_colliding()):
 		direction = 1
-		print("ray l")
 	
 	if(!ray_cast_2d_r.is_colliding()):
 		direction = -1
-		print("ray r")
-	
 	
 	animated_sprite_2d.flip_h = (direction == -1)
 	position.x += direction * SPEED * delta
