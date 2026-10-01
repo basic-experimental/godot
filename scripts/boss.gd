@@ -89,8 +89,9 @@ func update_collision():
 			right_foot.disabled = true
 			
 func spawn_raindrop():
-	var raindrop = RAINDROP_SCENE.instantiate()
-	raindrop.position.x = position.x + randi_range(-400, 400)
-	raindrop.position.y = position.y - 150
-	gameNode.add_child(raindrop)
+	if Cutscene.entered_boss_arena:
+		var raindrop = RAINDROP_SCENE.instantiate()
+		raindrop.position.x = position.x + randi_range(-400, 400)
+		raindrop.position.y = position.y - 150
+		gameNode.add_child(raindrop)
 	
