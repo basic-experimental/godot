@@ -13,6 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://bi6x6jf0mvjhk" path="res://scenes/Boss.tscn" id="10_v5b4n"]
 [ext_resource type="PackedScene" uid="uid://baw5lfkb5mv3g" path="res://scenes/ufo.tscn" id="11_phgsc"]
 [ext_resource type="PackedScene" uid="uid://bmmctyphy3pay" path="res://scenes/spider.tscn" id="12_a2svu"]
+[ext_resource type="Texture2D" uid="uid://bnetmnf750goh" path="res://assets/WPI Goat Sprite/WPIGoatWithOutline.png" id="14_hvdyd"]
+[ext_resource type="Script" uid="uid://dhvj2dxbds4l5" path="res://scripts/gompei_ram.gd" id="15_co50f"]
+[ext_resource type="Texture2D" uid="uid://cqewwquthmmd3" path="res://assets/sprites/BabyAlienBoss-Sheet.png" id="16_rg7ok"]
+[ext_resource type="FontFile" uid="uid://bnj1346fn3m6p" path="res://assets/fonts/PixelOperator8.ttf" id="17_pvi7j"]
 
 [sub_resource type="Curve2D" id="Curve2D_o7h1l"]
 _data = {
@@ -778,6 +782,279 @@ distance = -144.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cc37w"]
 size = Vector2(58, 233)
 
+[sub_resource type="Animation" id="Animation_a2svu"]
+resource_name = "Boss"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BossCutscene/BossStartCutscene/Goat:sprite_frames")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BossCutscene/BossStartCutscene/Goat")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["idle"],
+"method": &"play_anim"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BossCutscene/BossStartCutscene/Goat:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BossCutscene/BossStartCutscene/Boss:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BossCutscene/BossStartCutscene/Boss")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["crying"],
+"method": &"play_anim"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BossCutscene/BossStartCutscene/Label:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.2, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BossCutscene/CutsceneCamera:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Player/Camera2D:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_5wjeq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BossCutscene/BossStartCutscene/Goat:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BossCutscene/BossStartCutscene/Boss:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BossCutscene/BossStartCutscene/Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BossCutscene/CutsceneCamera:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Player/Camera2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_emu1g"]
+_data = {
+&"Boss": SubResource("Animation_a2svu"),
+&"RESET": SubResource("Animation_5wjeq")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rg7ok"]
+atlas = ExtResource("14_hvdyd")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvi7j"]
+atlas = ExtResource("14_hvdyd")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wjeq"]
+atlas = ExtResource("14_hvdyd")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f53ia"]
+atlas = ExtResource("14_hvdyd")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7uo55"]
+atlas = ExtResource("14_hvdyd")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8ivg"]
+atlas = ExtResource("14_hvdyd")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bctax"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rg7ok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvi7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wjeq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f53ia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7uo55")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8ivg")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ab5jv"]
+atlas = ExtResource("16_rg7ok")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbd1q"]
+atlas = ExtResource("16_rg7ok")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xk2h"]
+atlas = ExtResource("16_rg7ok")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gph3w"]
+atlas = ExtResource("16_rg7ok")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0airf"]
+atlas = ExtResource("16_rg7ok")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rca2"]
+atlas = ExtResource("16_rg7ok")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wp4ik"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ab5jv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbd1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xk2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gph3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0airf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rca2")
+}],
+"loop": 1,
+"name": &"crying",
+"speed": 5.0
+}]
+
 [node name="Game" type="Node2D" unique_id=2054894990]
 script = ExtResource("1_a2svu")
 
@@ -837,10 +1114,10 @@ tile_set = SubResource("TileSet_dr8ba")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1894549304]
 z_index = -21
-offset_left = -660.0
-offset_top = -1687.0
-offset_right = 2740.0
-offset_bottom = 661.0
+offset_left = -664.0
+offset_top = -1672.0
+offset_right = 2736.0
+offset_bottom = 676.0
 color = Color(0, 0, 0, 1)
 
 [node name="Killzone" parent="." unique_id=1272656417 instance=ExtResource("8_hgrhv")]
@@ -886,5 +1163,42 @@ shape = SubResource("RectangleShape2D_cc37w")
 position = Vector2(-48, 0)
 tile_map_data = PackedByteArray("AAABAPv/AQAIAAsAAAABAPz/AQAIAAsAAAABAP3/AQAIAAsAAAABAP7/AQAIAAsAAAABAP//AQAIAAsAAAABAAAAAQAIAAsAAAABAAEAAQAIAAsAAAABAAIAAQAIAAsAAAABAAMAAQAIAAsAAAABAAQAAQAIAAsAAAABAAUAAQAIAAsAAAABAAYAAQAIAAsAAAABAPj/AQAIAAsAAAABAPn/AQAIAAsAAAABAPr/AQAIAAsAAAABAAcAAQAIAAsAAAA=")
 tile_set = SubResource("TileSet_dr8ba")
+
+[node name="BossCutscene" type="Node" parent="." unique_id=1564841247]
+
+[node name="BossStartCutscene" type="AnimationPlayer" parent="BossCutscene" unique_id=2129875185]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_emu1g")
+
+[node name="Goat" type="AnimatedSprite2D" parent="BossCutscene/BossStartCutscene" unique_id=2024339423]
+position = Vector2(1488, -864)
+scale = Vector2(1.0624996, 1)
+sprite_frames = SubResource("SpriteFrames_bctax")
+animation = &"idle"
+script = ExtResource("15_co50f")
+
+[node name="Boss" type="AnimatedSprite2D" parent="BossCutscene/BossStartCutscene" unique_id=586950249]
+position = Vector2(1704, -912)
+sprite_frames = SubResource("SpriteFrames_wp4ik")
+animation = &"crying"
+script = ExtResource("15_co50f")
+
+[node name="Label" type="Label" parent="BossCutscene/BossStartCutscene" unique_id=344285690]
+offset_left = 1720.0
+offset_top = -1008.0
+offset_right = 1948.0
+offset_bottom = -967.0
+theme_override_fonts/font = ExtResource("17_pvi7j")
+text = "Mommy I need 
+MILK!!!"
+horizontal_alignment = 1
+
+[node name="CutsceneCamera" type="Camera2D" parent="BossCutscene" unique_id=1762746339]
+position = Vector2(1704, -936)
+zoom = Vector2(2, 2)
+
+[node name="EndCutScene" type="Node" parent="." unique_id=1687402556]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EndCutScene" unique_id=494835109]
 
 [connection signal="body_entered" from="BossArena" to="." method="_on_boss_arena_body_entered"]
