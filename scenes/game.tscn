@@ -2411,7 +2411,7 @@ text = "Press Esc to Skip"
 label_settings = SubResource("LabelSettings_sww3w")
 
 [node name="CharacterBody2D" parent="." unique_id=1003118915 instance=ExtResource("14_trtic")]
-position = Vector2(1696, -144)
+position = Vector2(1696, -145)
 
 [node name="CharacterBody2D2" parent="." unique_id=200245396 instance=ExtResource("14_trtic")]
 position = Vector2(2016, -161)
