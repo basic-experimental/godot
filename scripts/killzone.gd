@@ -7,6 +7,7 @@ var is_already_hit = false
 
 func _physics_process(delta: float) -> void:
 	if(overlaps_body(player) && enabled && !is_already_hit):
+		is_already_hit = true
 		print("Restart")
 		player.play_player_sound(player.SFX_HURT)
 		player.get_node("CollisionShape2D").queue_free()
