@@ -2414,7 +2414,7 @@ label_settings = SubResource("LabelSettings_sww3w")
 position = Vector2(1696, -144)
 
 [node name="CharacterBody2D2" parent="." unique_id=200245396 instance=ExtResource("14_trtic")]
-position = Vector2(2016, -160)
+position = Vector2(2016, -161)
 
 [connection signal="body_entered" from="GameManager/CutsceneDetection" to="GameManager" method="_on_cutscene_detection_body_entered"]
 [connection signal="animation_finished" from="OpeningCutscene/StartCutscene" to="." method="_on_start_cutscene_animation_finished"]
