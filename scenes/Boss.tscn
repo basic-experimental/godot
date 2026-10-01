@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bi6x6jf0mvjhk"]
 
 [ext_resource type="Texture2D" uid="uid://cqewwquthmmd3" path="res://assets/sprites/BabyAlienBoss-Sheet.png" id="1_eynm2"]
-[ext_resource type="Script" uid="uid://cnwvhuppiokb6" path="res://scenes/boss.gd" id="1_gw42l"]
+[ext_resource type="Script" uid="uid://cnwvhuppiokb6" path="res://scripts/boss.gd" id="1_gw42l"]
 [ext_resource type="PackedScene" uid="uid://caybaaxou081g" path="res://scenes/killzone.tscn" id="3_edv8j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ig5k"]

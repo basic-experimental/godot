@@ -18,7 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://bf4u5s8etsth0" path="res://assets/sounds/RocketLaunchingSound.wav" id="8_sgl2t"]
 [ext_resource type="Texture2D" uid="uid://dwr6vj73bapsy" path="res://assets/Farmhouse.png" id="9_vtaks"]
 [ext_resource type="Texture2D" uid="uid://b6eju8jkw84pj" path="res://assets/RobertGoddardStickMan-Sheet.png" id="10_dinhu"]
-[ext_resource type="Script" uid="uid://b8g1bllv2fiiq" path="res://scenes/MusicController.gd" id="11_qnb83"]
+[ext_resource type="Script" uid="uid://b8g1bllv2fiiq" path="res://scripts/MusicController.gd" id="11_qnb83"]
 [ext_resource type="FontFile" uid="uid://bnj1346fn3m6p" path="res://assets/fonts/PixelOperator8.ttf" id="12_kvuet"]
 [ext_resource type="PackedScene" uid="uid://bmmctyphy3pay" path="res://scenes/spider.tscn" id="14_trtic"]
 [ext_resource type="Script" uid="uid://cipgq73mfnmf5" path="res://scripts/ufo_1.gd" id="18_1kice"]

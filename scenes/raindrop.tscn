@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ba7617jo18qhy"]
 
-[ext_resource type="Script" uid="uid://cb5xr33rvcjq8" path="res://scenes/raindrop.gd" id="1_yjn3f"]
+[ext_resource type="Script" uid="uid://cb5xr33rvcjq8" path="res://scripts/raindrop.gd" id="1_yjn3f"]
 [ext_resource type="Texture2D" uid="uid://pdicri4p3pnr" path="res://assets/sprites/BossProjectile.png" id="2_l04qk"]
 [ext_resource type="PackedScene" uid="uid://caybaaxou081g" path="res://scenes/killzone.tscn" id="3_3qp30"]
 

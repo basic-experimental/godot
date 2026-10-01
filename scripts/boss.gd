@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var killzone: Area2D = $Killzone
 @onready var player: CharacterBody2D = $"/root/Game/Player"
+@onready var gameNode: Node2D = $"/root/Game/"
 @onready var right_foot: CollisionShape2D = $Killzone/RightFoot
 @onready var left_foot: CollisionShape2D = $Killzone/LeftFoot
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -18,8 +19,8 @@ enum State {
 const IDLE_TIME = 3000 #ms
 const HURT_TIME = 1000 #ms
 const ATTACK_TIME = 5000 #ms
-const NUM_RAINDROPS = 5
-const RAINDROP_INTERVAL = 750 #ms
+const NUM_RAINDROPS = 20
+const RAINDROP_INTERVAL = 200 #ms
 
 var state = State.Idle
 var animation_start_time = 0
@@ -89,5 +90,7 @@ func update_collision():
 			
 func spawn_raindrop():
 	var raindrop = RAINDROP_SCENE.instantiate()
-	raindrop.position.x = position.x + randi_range(-500, 500)
-	raindrop.position.y = position.y - 100
+	raindrop.position.x = position.x + randi_range(-400, 400)
+	raindrop.position.y = position.y - 150
+	gameNode.add_child(raindrop)
+	

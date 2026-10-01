@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://byffrfoaotcxp"]
 
-[ext_resource type="Script" uid="uid://beedrutnhc5do" path="res://scenes/world_2.gd" id="1_a2svu"]
+[ext_resource type="Script" uid="uid://beedrutnhc5do" path="res://scripts/world_2.gd" id="1_a2svu"]
 [ext_resource type="Texture2D" uid="uid://c414e4k7t2wdo" path="res://assets/WPI Goat Sprite/GompeiRocket-Sheet.png" id="1_rwd0d"]
 [ext_resource type="Texture2D" uid="uid://d2ny608707bua" path="res://assets/Tileset.png" id="1_tjjxi"]
 [ext_resource type="PackedScene" uid="uid://bqdtjypkkfp65" path="res://scenes/player.tscn" id="2_axyqp"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://8awg2y3mox6x" path="res://assets/sprites/TerrainWithFence.png" id="5_o7h1l"]
 [ext_resource type="AudioStream" uid="uid://cd2e7fhurtqji" path="res://assets/music/2ndLevelMusic(space).wav" id="5_rwd0d"]
 [ext_resource type="PackedScene" uid="uid://caybaaxou081g" path="res://scenes/killzone.tscn" id="8_hgrhv"]
-[ext_resource type="Script" uid="uid://by3s2cbytf8yr" path="res://scenes/killzone2.gd" id="9_dr8ba"]
 [ext_resource type="PackedScene" uid="uid://bi6x6jf0mvjhk" path="res://scenes/Boss.tscn" id="10_v5b4n"]
 [ext_resource type="PackedScene" uid="uid://baw5lfkb5mv3g" path="res://scenes/ufo.tscn" id="11_phgsc"]
 [ext_resource type="PackedScene" uid="uid://bmmctyphy3pay" path="res://scenes/spider.tscn" id="12_a2svu"]
@@ -772,6 +771,23 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_rwd0d")
 sources/1 = SubResource("TileSetAtlasSource_hgrhv")
 
+[sub_resource type="GDScript" id="GDScript_phgsc"]
+script/source = "extends Area2D
+@onready var timer: Timer = $Timer
+@onready var player: CharacterBody2D = $\"/root/Game/Player\"
+
+func _on_body_entered(body: Node2D) -> void:
+	if body == player:
+		print(\"Restart\")
+		player.play_player_sound(player.SFX_HURT)
+		player.get_node(\"CollisionShape2D\").queue_free()
+		timer.start()
+
+func _on_timer_timeout() -> void:
+	Engine.time_scale = 1
+	get_tree().reload_current_scene()
+"
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bctax"]
 distance = -144.0
 
@@ -845,7 +861,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Killzone" parent="." unique_id=1272656417 instance=ExtResource("8_hgrhv")]
 position = Vector2(2, 95)
-script = ExtResource("9_dr8ba")
+script = SubResource("GDScript_phgsc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=1155809227]
 shape = SubResource("WorldBoundaryShape2D_bctax")
