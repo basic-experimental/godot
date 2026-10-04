@@ -46,6 +46,7 @@ var rocket_on_cooldown = false
 var fire_start_time = 0
 var fire_end_time = -FIRE_COOLDOWN
 var is_being_abducted = false
+var has_infinite_rocket: bool = false
 
 func _physics_process(delta: float) -> void:
 	var TIME = Time.get_ticks_msec()
@@ -98,19 +99,21 @@ func _physics_process(delta: float) -> void:
 			is_slamming = false
 
 	# Rocket
-	if is_on_floor():
+	if is_on_floor() and not has_infinite_rocket:
 		rocket_on_cooldown = false
-
+	
 	if power_up == PowerUp.Rocket or power_up == PowerUp.All:
-		if !is_rocketing and !is_on_floor() and !rocket_on_cooldown and Input.is_action_just_pressed("rocket"):
+		# Allow launching if off the floor OR if in infinite rocket mode
+		if !is_rocketing and (!is_on_floor() or has_infinite_rocket) and (!rocket_on_cooldown or has_infinite_rocket) and Input.is_action_just_pressed("rocket"):
 			is_rocketing = true
 			rocket_start_time = TIME
 			play_player_sound(SFX_Jetpack)
 		elif is_rocketing and Input.is_action_just_released("rocket"):
 			is_rocketing = false
-			rocket_on_cooldown = true
+			if not has_infinite_rocket:
+				rocket_on_cooldown = true
 			stop_if_sound(SFX_Jetpack)
-		elif is_rocketing and TIME - rocket_start_time >= ROCKET_TIME:
+		elif is_rocketing and not has_infinite_rocket and TIME - rocket_start_time >= ROCKET_TIME:
 			is_rocketing = false
 			rocket_on_cooldown = true
 			stop_if_sound(SFX_Jetpack)

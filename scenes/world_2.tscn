@@ -5,14 +5,19 @@
 [ext_resource type="Texture2D" uid="uid://d2ny608707bua" path="res://assets/Tileset.png" id="1_tjjxi"]
 [ext_resource type="PackedScene" uid="uid://bqdtjypkkfp65" path="res://scenes/player.tscn" id="2_axyqp"]
 [ext_resource type="Script" uid="uid://cdi3hkl8hq24t" path="res://scripts/player.gd" id="3_3m0gu"]
+[ext_resource type="AudioStream" uid="uid://cxarmw6c0hj0t" path="res://assets/sounds/JetpackAbilitySound.wav" id="3_pvi7j"]
+[ext_resource type="AudioStream" uid="uid://dbocssexqieq8" path="res://assets/sounds/GoatJumpsfx.wav" id="4_5wjeq"]
 [ext_resource type="AudioStream" uid="uid://c5qhyb43cdcm3" path="res://assets/sounds/GoatWalksfx.wav" id="4_o7h1l"]
 [ext_resource type="Texture2D" uid="uid://8awg2y3mox6x" path="res://assets/sprites/TerrainWithFence.png" id="5_o7h1l"]
-[ext_resource type="AudioStream" uid="uid://cd2e7fhurtqji" path="res://assets/music/2ndLevelMusic(space).wav" id="5_rwd0d"]
 [ext_resource type="PackedScene" uid="uid://caybaaxou081g" path="res://scenes/killzone.tscn" id="8_hgrhv"]
 [ext_resource type="PackedScene" uid="uid://bi6x6jf0mvjhk" path="res://scenes/Boss.tscn" id="10_v5b4n"]
+[ext_resource type="Texture2D" uid="uid://dgau0vfs8l5b3" path="res://assets/sprites/BossHealthBar-Sheet.png" id="11_7uo55"]
 [ext_resource type="PackedScene" uid="uid://baw5lfkb5mv3g" path="res://scenes/ufo.tscn" id="11_phgsc"]
 [ext_resource type="PackedScene" uid="uid://bmmctyphy3pay" path="res://scenes/spider.tscn" id="12_a2svu"]
+[ext_resource type="AudioStream" uid="uid://cr7lvyss67tcg" path="res://assets/music/BossBattleMusic.wav" id="12_co50f"]
+[ext_resource type="Texture2D" uid="uid://cpm60dw4a8dec" path="res://assets/sprites/BossFloorIsLava.png" id="14_f53ia"]
 [ext_resource type="Texture2D" uid="uid://bnetmnf750goh" path="res://assets/WPI Goat Sprite/WPIGoatWithOutline.png" id="14_hvdyd"]
+[ext_resource type="Texture2D" uid="uid://c4t0egkb8jsjq" path="res://assets/sprites/Frame2FloorIslava.png" id="15_7uo55"]
 [ext_resource type="Script" uid="uid://dhvj2dxbds4l5" path="res://scripts/gompei_ram.gd" id="15_co50f"]
 [ext_resource type="Texture2D" uid="uid://cqewwquthmmd3" path="res://assets/sprites/BabyAlienBoss-Sheet.png" id="16_rg7ok"]
 [ext_resource type="FontFile" uid="uid://bnj1346fn3m6p" path="res://assets/fonts/PixelOperator8.ttf" id="17_pvi7j"]
@@ -169,6 +174,29 @@ tracks/5/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("OpeningCutscene/AudioStreamPlayer2D")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 1.1085413,
+"start_offset": 0.19159962,
+"stream": ExtResource("3_pvi7j")
+}, {
+"end_offset": 1.0811691,
+"start_offset": 0.13685687,
+"stream": ExtResource("3_pvi7j")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_5wjeq")
+}],
+"times": PackedFloat32Array(0, 2.1964765, 6.233333)
+}
+tracks/6/use_blend = true
 
 [sub_resource type="Animation" id="Animation_hgrhv"]
 length = 0.001
@@ -795,8 +823,46 @@ func _on_timer_timeout() -> void:
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bctax"]
 distance = -144.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8pyg"]
+atlas = ExtResource("11_7uo55")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pg8nx"]
+atlas = ExtResource("11_7uo55")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmty3"]
+atlas = ExtResource("11_7uo55")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v6yfc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8pyg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pg8nx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmty3")
+}],
+"loop": 1,
+"name": &"health",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cc37w"]
 size = Vector2(58, 233)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bctax"]
+size = Vector2(571, 26)
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_bctax"]
+frames = 2
+frame_0/texture = ExtResource("14_f53ia")
+frame_1/texture = ExtResource("15_7uo55")
+frame_1/duration = 1.0
 
 [sub_resource type="Animation" id="Animation_a2svu"]
 resource_name = "Boss"
@@ -820,12 +886,9 @@ tracks/1/path = NodePath("BossCutscene/BossStartCutscene/Goat")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": ["idle"],
-"method": &"play_anim"
-}]
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -842,7 +905,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("BossCutscene/BossStartCutscene/Boss:visible")
+tracks/3/path = NodePath("BossCutscene/BossStartCutscene/BossCutscene:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -854,7 +917,7 @@ tracks/3/keys = {
 tracks/4/type = "method"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("BossCutscene/BossStartCutscene/Boss")
+tracks/4/path = NodePath("BossCutscene/BossStartCutscene/BossCutscene")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -880,7 +943,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("BossCutscene/CutsceneCamera:visible")
+tracks/6/path = NodePath("BossCutscene/CutsceneCamera2:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -901,6 +964,33 @@ tracks/7/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Boss:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/9/type = "audio"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BossArena/ArenaMusic")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_co50f")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/9/use_blend = true
 
 [sub_resource type="Animation" id="Animation_5wjeq"]
 length = 0.001
@@ -919,7 +1009,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BossCutscene/BossStartCutscene/Boss:visible")
+tracks/1/path = NodePath("BossCutscene/BossStartCutscene/BossCutscene:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -943,7 +1033,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("BossCutscene/CutsceneCamera:visible")
+tracks/3/path = NodePath("BossCutscene/CutsceneCamera2:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -959,6 +1049,18 @@ tracks/4/path = NodePath("Player/Camera2D:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Boss:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -1099,6 +1201,8 @@ frame = 8
 [node name="OpeningCutscene" type="AnimationPlayer" parent="OpeningCutscene" unique_id=564290255]
 libraries/ = SubResource("AnimationLibrary_dr8ba")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="OpeningCutscene/OpeningCutscene" unique_id=462816222]
+
 [node name="Player" parent="." unique_id=1513251035 instance=ExtResource("2_axyqp")]
 visible = false
 position = Vector2(17, -15)
@@ -1119,7 +1223,6 @@ stream = ExtResource("4_o7h1l")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player" unique_id=1584820188]
 position = Vector2(28, -44)
-stream = ExtResource("5_rwd0d")
 volume_db = -15.0
 autoplay = true
 
@@ -1130,10 +1233,10 @@ tile_set = SubResource("TileSet_dr8ba")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1894549304]
 z_index = -21
-offset_left = -664.0
-offset_top = -1672.0
-offset_right = 2736.0
-offset_bottom = 676.0
+offset_left = -464.0
+offset_top = -2048.0
+offset_right = 2936.0
+offset_bottom = 300.0
 color = Color(0, 0, 0, 1)
 
 [node name="Killzone" parent="." unique_id=1272656417 instance=ExtResource("8_hgrhv")]
@@ -1142,6 +1245,12 @@ script = SubResource("GDScript_phgsc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=1155809227]
 shape = SubResource("WorldBoundaryShape2D_bctax")
+
+[node name="HealthBar" type="AnimatedSprite2D" parent="." unique_id=1069318717]
+position = Vector2(1704, -988)
+sprite_frames = SubResource("SpriteFrames_v6yfc")
+animation = &"health"
+frame_progress = 0.6953124
 
 [node name="Boss" parent="." unique_id=1844773469 instance=ExtResource("10_v5b4n")]
 position = Vector2(1704, -912)
@@ -1180,6 +1289,24 @@ position = Vector2(-48, 0)
 tile_map_data = PackedByteArray("AAABAPv/AQAIAAsAAAABAPz/AQAIAAsAAAABAP3/AQAIAAsAAAABAP7/AQAIAAsAAAABAP//AQAIAAsAAAABAAAAAQAIAAsAAAABAAEAAQAIAAsAAAABAAIAAQAIAAsAAAABAAMAAQAIAAsAAAABAAQAAQAIAAsAAAABAAUAAQAIAAsAAAABAAYAAQAIAAsAAAABAPj/AQAIAAsAAAABAPn/AQAIAAsAAAABAPr/AQAIAAsAAAABAAcAAQAIAAsAAAA=")
 tile_set = SubResource("TileSet_dr8ba")
 
+[node name="ArenaMusic" type="AudioStreamPlayer2D" parent="BossArena" unique_id=708774075]
+position = Vector2(268, 55.5)
+
+[node name="FloorIsLava" type="Area2D" parent="BossArena" unique_id=2044580612]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossArena/FloorIsLava" unique_id=1319467651]
+position = Vector2(265.5, 108.5)
+shape = SubResource("RectangleShape2D_bctax")
+
+[node name="TextureRect" type="TextureRect" parent="BossArena/FloorIsLava" unique_id=192892064]
+offset_left = -20.0
+offset_top = 95.5
+offset_right = 556.0
+offset_bottom = 111.5
+texture = SubResource("AnimatedTexture_bctax")
+expand_mode = 1
+stretch_mode = 1
+
 [node name="BossCutscene" type="Node" parent="." unique_id=1564841247]
 
 [node name="BossStartCutscene" type="AnimationPlayer" parent="BossCutscene" unique_id=2129875185]
@@ -1193,7 +1320,7 @@ sprite_frames = SubResource("SpriteFrames_bctax")
 animation = &"idle"
 script = ExtResource("15_co50f")
 
-[node name="Boss" type="AnimatedSprite2D" parent="BossCutscene/BossStartCutscene" unique_id=586950249]
+[node name="BossCutscene" type="AnimatedSprite2D" parent="BossCutscene/BossStartCutscene" unique_id=586950249]
 position = Vector2(1704, -912)
 sprite_frames = SubResource("SpriteFrames_wp4ik")
 animation = &"crying"
@@ -1209,12 +1336,12 @@ text = "Mommy I need
 MILK!!!"
 horizontal_alignment = 1
 
-[node name="CutsceneCamera" type="Camera2D" parent="BossCutscene" unique_id=1762746339]
+[node name="CutsceneCamera2" type="Camera2D" parent="BossCutscene" unique_id=1762746339]
 position = Vector2(1704, -936)
 zoom = Vector2(2, 2)
 
 [node name="EndCutScene" type="Node" parent="." unique_id=1687402556]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="EndCutScene" unique_id=494835109]
+[node name="EndCutScene" type="AnimationPlayer" parent="EndCutScene" unique_id=494835109]
 
 [connection signal="body_entered" from="BossArena" to="." method="_on_boss_arena_body_entered"]
