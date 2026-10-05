@@ -7,10 +7,9 @@ extends Node2D
 @onready var left_foot: CollisionShape2D = $Killzone/LeftFoot
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var health_bar: AnimatedSprite2D = $"../HealthBar"
 
-# Arena, Lava, Healthbar & End Cutscene references
 @onready var lava_floor: Area2D = get_node_or_null("../BossArena/FloorIsLava")
-@onready var health_bar: ProgressBar = get_node_or_null("../BossArena/HealthBar") # Adjust path if located under CanvasLayer/UI
 @onready var end_cutscene_player: AnimationPlayer = get_node_or_null("../EndCutScene/EndCutScene")
 
 const RAINDROP_SCENE = preload("res://scenes/raindrop.tscn")
@@ -59,9 +58,7 @@ func _ready() -> void:
 
 	# Initialize healthbar
 	if health_bar:
-		health_bar.max_value = 3
-		health_bar.value = boss_health
-		health_bar.visible = false
+		health_bar.play(str(boss_health))
 
 	if Cutscene.entered_boss_arena:
 		start_boss()
@@ -73,10 +70,6 @@ func start_boss() -> void:
 	num_raindrops = 20
 	raindrop_interval = 200
 	is_invulnerable = false
-	
-	if health_bar:
-		health_bar.value = boss_health
-		health_bar.visible = true
 
 	state = State.Idle
 	animated_sprite_2d.play("Idle")
@@ -146,8 +139,8 @@ func take_damage() -> void:
 	is_invulnerable = true
 	boss_health -= 1
 	
-	if health_bar:
-		health_bar.value = boss_health
+	if(boss_health > 0):
+		health_bar.play(str(boss_health))
 
 	# Trigger the Hurt animation
 	state = State.Hurt
@@ -170,8 +163,7 @@ func start_lava_phase() -> void:
 	lava_phase_timer = Time.get_ticks_msec()
 	
 	# Give player flight boost
-	if "has_infinite_rocket" in player:
-		player.has_infinite_rocket = true
+	player.has_infinite_rocket = true
 	
 	# Turn ON lava visuals and hitbox
 	if lava_floor:
@@ -185,8 +177,7 @@ func end_lava_phase() -> void:
 		lava_floor.set_deferred("monitoring", false)
 	
 	# Remove flight buff
-	if "has_infinite_rocket" in player:
-		player.has_infinite_rocket = false
+	player.has_infinite_rocket = false
 	
 	# Boss drops into vulnerable Idle state
 	is_invulnerable = false
@@ -197,19 +188,19 @@ func end_lava_phase() -> void:
 func _on_lava_floor_body_entered(body: Node2D) -> void:
 	if body == player:
 		# Kill or reset player on lava touch
-		if player.has_method("play_player_sound"):
-			player.play_player_sound(player.SFX_HURT)
+		player.play_player_sound(player.SFX_HURT)
 		get_tree().reload_current_scene()
 
 func boss_defeated() -> void:
 	boss_active = false
 	animated_sprite_2d.play("Hurt")
 	
-	if "has_infinite_rocket" in player:
-		player.has_infinite_rocket = false
+	player.has_infinite_rocket = false
+	
 	if lava_floor:
 		lava_floor.visible = false
 		lava_floor.set_deferred("monitoring", false)
+	
 	if health_bar:
 		health_bar.visible = false
 
