@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://bqxg8ks7i74ff" path="res://assets/Warning2.png" id="16_j8pyg"]
 [ext_resource type="Texture2D" uid="uid://cqewwquthmmd3" path="res://assets/sprites/BabyAlienBoss-Sheet.png" id="16_rg7ok"]
 [ext_resource type="AudioStream" uid="uid://5hu8i453mog3" path="res://assets/sounds/BabyTalking.wav" id="17_gph3w"]
+[ext_resource type="AudioStream" uid="uid://dfjh4aqsu8ejr" path="res://assets/music/VictorySong.wav" id="17_j8pyg"]
 [ext_resource type="FontFile" uid="uid://bnj1346fn3m6p" path="res://assets/fonts/PixelOperator8.ttf" id="17_pvi7j"]
 [ext_resource type="AudioStream" uid="uid://btvnq6m5fs5hw" path="res://assets/sounds/MetalDoor.wav" id="18_0airf"]
 [ext_resource type="AudioStream" uid="uid://cvw6ajbilo5ht" path="res://assets/sounds/KillsAnEnemy.wav" id="19_8rca2"]
@@ -875,6 +876,7 @@ frame_1/duration = 0.5
 [sub_resource type="Animation" id="Animation_7uo55"]
 resource_name = "EndCutScene"
 length = 9.0
+step = 0.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1020,6 +1022,45 @@ tracks/9/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/10/type = "audio"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../BossArena/ArenaMusic")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("17_j8pyg")
+}],
+"times": PackedFloat32Array(0.029700488)
+}
+tracks/10/use_blend = true
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Player/Camera2D:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("CutsceneCamera2:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_hmty3"]
 length = 0.001
@@ -1090,6 +1131,30 @@ tracks/5/path = NodePath("SecretsCollected:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CutsceneCamera2:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Player/Camera2D:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
