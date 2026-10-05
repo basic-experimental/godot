@@ -25,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://btvnq6m5fs5hw" path="res://assets/sounds/MetalDoor.wav" id="18_0airf"]
 [ext_resource type="AudioStream" uid="uid://cvw6ajbilo5ht" path="res://assets/sounds/KillsAnEnemy.wav" id="19_8rca2"]
 [ext_resource type="AudioStream" uid="uid://d20arcrj2d7v0" path="res://assets/sounds/coin.wav" id="20_j8pyg"]
+[ext_resource type="PackedScene" uid="uid://dpy7kogh1eygx" path="res://scenes/coin.tscn" id="22_s8ivg"]
 [ext_resource type="Texture2D" uid="uid://d6h8bi4jxv8b" path="res://assets/sprites/WPIGoat-Sheet.png" id="22_0airf"]
 [ext_resource type="Texture2D" uid="uid://mvaofkaew3pg" path="res://assets/HolyMilk.png" id="26_pg8nx"]
 
@@ -1678,5 +1679,16 @@ horizontal_alignment = 1
 [node name="HolyMilk" type="Sprite2D" parent="BossCutscene" unique_id=684209586]
 position = Vector2(1704, -1016)
 texture = ExtResource("26_pg8nx")
+
+[node name="Coins" type="Node" parent="." unique_id=1695175628]
+
+[node name="Coin2" parent="Coins" unique_id=389675372 instance=ExtResource("22_s8ivg")]
+position = Vector2(1871, 45)
+
+[node name="Coin" parent="Coins" unique_id=195338749 instance=ExtResource("22_s8ivg")]
+position = Vector2(-199, -685)
+
+[node name="Coin3" parent="Coins" unique_id=1645192452 instance=ExtResource("22_s8ivg")]
+position = Vector2(1237, -425)
 
 [connection signal="body_entered" from="BossArena" to="." method="_on_boss_arena_body_entered"]

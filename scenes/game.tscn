@@ -30,6 +30,7 @@
 [ext_resource type="Script" uid="uid://dhvj2dxbds4l5" path="res://scripts/gompei_ram.gd" id="21_5newe"]
 [ext_resource type="AudioStream" uid="uid://l10fabgturnl" path="res://assets/sounds/RammingOrGalloping.wav" id="22_bhx41"]
 [ext_resource type="AudioStream" uid="uid://cvw6ajbilo5ht" path="res://assets/sounds/KillsAnEnemy.wav" id="23_qnb83"]
+[ext_resource type="PackedScene" uid="uid://dpy7kogh1eygx" path="res://scenes/coin.tscn" id="31_qouja"]
 
 [sub_resource type="Curve2D" id="Curve2D_kvpfn"]
 _data = {
@@ -2415,6 +2416,17 @@ position = Vector2(1696, -145)
 
 [node name="CharacterBody2D2" parent="." unique_id=200245396 instance=ExtResource("14_trtic")]
 position = Vector2(2016, -161)
+
+[node name="Coins" type="Node" parent="." unique_id=99699708]
+
+[node name="Coin" parent="Coins" unique_id=389675372 instance=ExtResource("31_qouja")]
+position = Vector2(720, -217)
+
+[node name="Coin2" parent="Coins" unique_id=837265649 instance=ExtResource("31_qouja")]
+position = Vector2(2013, -371)
+
+[node name="Coin3" parent="Coins" unique_id=1438341076 instance=ExtResource("31_qouja")]
+position = Vector2(2755, -351)
 
 [connection signal="body_entered" from="GameManager/CutsceneDetection" to="GameManager" method="_on_cutscene_detection_body_entered"]
 [connection signal="animation_finished" from="OpeningCutscene/StartCutscene" to="." method="_on_start_cutscene_animation_finished"]

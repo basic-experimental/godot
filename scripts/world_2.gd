@@ -22,6 +22,10 @@ extends Node2D
 const LEVEL_2_MUSIC = preload("res://assets/music/2ndLevelMusic(space).wav")
 
 func _ready() -> void:
+	$BossCutscene/BossStartCutscene/BossCutscene.visible = false
+	$BossCutscene/BossStartCutscene/Goat.visible = false
+	$BossCutscene/BossStartCutscene/Label.visible = false
+	
 	if boss_camera:
 		boss_camera.enabled = false
 
@@ -91,6 +95,7 @@ func _on_boss_arena_body_entered(body: Node2D) -> void:
 			# 1. Lock player and switch to cutscene camera
 			player.set_physics_process(false)
 			player.velocity = Vector2.ZERO
+			player.visible = false
 			player_camera.enabled = false
 			boss_camera.enabled = true
 			
@@ -109,7 +114,9 @@ func _on_boss_arena_body_entered(body: Node2D) -> void:
 			# 4. Enable combat boss and restore controls
 			combat_boss.visible = true
 			boss_camera.enabled = false
+			player.visible = true
 			player_camera.enabled = true
+			player.position = Vector2(1500, -850)
 			player.set_physics_process(true)
 			
 			# 5. Start boss attacks
