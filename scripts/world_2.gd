@@ -30,15 +30,28 @@ func _ready() -> void:
 	$BossCutscene/BossCutscene.visible = false
 	$BossCutscene/Goat.visible = false
 	$BossCutscene/StartCutsceneLabel.visible = false
+<<<<<<< HEAD
 	end_label.visible = false
 	secrets.visible = false
 	holy_milk.visible = false
+=======
+	
+	#Cutscene.entered_boss_arena = true
+>>>>>>> 56f024bf816694d72137d6dc6e47dda8eae290bb
 	
 	if boss_camera:
 		boss_camera.enabled = false
 
 	if Cutscene.entered_boss_arena:
+<<<<<<< HEAD
 		
+=======
+		# Respawn directly in boss arena after death:
+		# Completely hide the cutscene puppets container so they never reappear
+		$BossCutscene/BossCutscene.visible = false
+		$BossCutscene/Goat.visible = false
+
+>>>>>>> 56f024bf816694d72137d6dc6e47dda8eae290bb
 		player.position = Vector2(1500, -850)
 		player_camera.limit_left = 1420
 		player_camera.limit_right = 2000
@@ -116,7 +129,10 @@ func _on_boss_arena_body_entered(body: Node2D) -> void:
 			# 3. Cutscene is done: hide the entire cutscene container permanently
 			$BossCutscene/BossCutscene.visible = false
 			$BossCutscene/Goat.visible = false
+<<<<<<< HEAD
 			$BossCutscene/StartCutsceneLabel.visible = false
+=======
+>>>>>>> 56f024bf816694d72137d6dc6e47dda8eae290bb
 			
 			# 4. Enable combat boss and restore controls
 			combat_boss.visible = true
