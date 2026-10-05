@@ -2179,7 +2179,7 @@ animations = [{
 [sub_resource type="LabelSettings" id="LabelSettings_sww3w"]
 font_size = 8
 
-[node name="Game" type="Node2D" unique_id=660055868]
+[node name="Game2" type="Node2D" unique_id=660055868]
 script = ExtResource("1_e1j6l")
 
 [node name="GameManager" type="Node" parent="." unique_id=1095854885]
@@ -2421,6 +2421,9 @@ position = Vector2(2016, -161)
 
 [node name="Coin" parent="Coins" unique_id=389675372 instance=ExtResource("31_qouja")]
 position = Vector2(720, -217)
+
+[node name="Coin4" parent="Coins" unique_id=843956140 instance=ExtResource("31_qouja")]
+position = Vector2(-224, 32)
 
 [node name="Coin2" parent="Coins" unique_id=837265649 instance=ExtResource("31_qouja")]
 position = Vector2(2013, -371)
