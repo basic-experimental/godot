@@ -22,9 +22,11 @@ extends Node2D
 const LEVEL_2_MUSIC = preload("res://assets/music/2ndLevelMusic(space).wav")
 
 func _ready() -> void:
-	$BossCutscene/BossStartCutscene/BossCutscene.visible = false
-	$BossCutscene/BossStartCutscene/Goat.visible = false
-	$BossCutscene/BossStartCutscene/Label.visible = false
+	$BossCutscene/BossCutscene.visible = false
+	$BossCutscene/Goat.visible = false
+	$BossCutscene/StartCutsceneLabel.visible = false
+	
+	#Cutscene.entered_boss_arena = true
 	
 	if boss_camera:
 		boss_camera.enabled = false
@@ -32,8 +34,8 @@ func _ready() -> void:
 	if Cutscene.entered_boss_arena:
 		# Respawn directly in boss arena after death:
 		# Completely hide the cutscene puppets container so they never reappear
-		$BossCutscene/BossStartCutscene/BossCutscene.visible = false
-		$BossCutscene/BossStartCutscene/Goat.visible = false
+		$BossCutscene/BossCutscene.visible = false
+		$BossCutscene/Goat.visible = false
 
 		player.position = Vector2(1500, -850)
 		player_camera.limit_left = 1420
@@ -110,8 +112,8 @@ func _on_boss_arena_body_entered(body: Node2D) -> void:
 			await boss_anim_player.animation_finished
 			
 			# 3. Cutscene is done: hide the entire cutscene container permanently
-			$BossCutscene/BossStartCutscene/BossCutscene.visible = false
-			$BossCutscene/BossStartCutscene/Goat.visible = false
+			$BossCutscene/BossCutscene.visible = false
+			$BossCutscene/Goat.visible = false
 			
 			# 4. Enable combat boss and restore controls
 			combat_boss.visible = true
