@@ -25,8 +25,8 @@
 [ext_resource type="AudioStream" uid="uid://btvnq6m5fs5hw" path="res://assets/sounds/MetalDoor.wav" id="18_0airf"]
 [ext_resource type="AudioStream" uid="uid://cvw6ajbilo5ht" path="res://assets/sounds/KillsAnEnemy.wav" id="19_8rca2"]
 [ext_resource type="AudioStream" uid="uid://d20arcrj2d7v0" path="res://assets/sounds/coin.wav" id="20_j8pyg"]
-[ext_resource type="PackedScene" uid="uid://dpy7kogh1eygx" path="res://scenes/coin.tscn" id="22_s8ivg"]
 [ext_resource type="Texture2D" uid="uid://d6h8bi4jxv8b" path="res://assets/sprites/WPIGoat-Sheet.png" id="22_0airf"]
+[ext_resource type="PackedScene" uid="uid://dpy7kogh1eygx" path="res://scenes/coin.tscn" id="22_s8ivg"]
 [ext_resource type="Texture2D" uid="uid://mvaofkaew3pg" path="res://assets/HolyMilk.png" id="26_pg8nx"]
 
 [sub_resource type="Curve2D" id="Curve2D_o7h1l"]
@@ -1673,7 +1673,7 @@ offset_bottom = -895.0
 theme_override_fonts/font = ExtResource("17_pvi7j")
 theme_override_font_sizes/font_size = 13
 text = "You collected \"\" 
-out of 3 secrets."
+out of 7 secrets."
 horizontal_alignment = 1
 
 [node name="HolyMilk" type="Sprite2D" parent="BossCutscene" unique_id=684209586]

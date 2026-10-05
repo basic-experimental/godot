@@ -11,7 +11,12 @@ extends Node2D
 # Arena, Lava, Healthbar & End Cutscene references
 @onready var lava_floor: Area2D = get_node_or_null("../BossArena/FloorIsLava")
 @onready var health_bar: ProgressBar = get_node_or_null("../BossArena/HealthBar") # Adjust path if located under CanvasLayer/UI
-@onready var end_cutscene_player: AnimationPlayer = get_node_or_null("../EndCutScene/EndCutScene")
+@onready var end_cutscene_player: AnimationPlayer = $"/root/Game/BossCutscene/EndCutScene"
+@onready var player_camera: Camera2D =$"/root/Game/Player/Camera2D"
+@onready var cutscene_camera: Camera2D = $"/root/Game/BossCutscene/CutsceneCamera2"
+@onready var secrets: Label = $"/root/Game/BossCutscene/SecretsCollected"
+@onready var end_label: Label = $"/root/Game/BossCutscene/EndCutsceneLabel"
+@onready var milk: Sprite2D = $"/root/Game/BossCutscene/HolyMilk"
 
 const RAINDROP_SCENE = preload("res://scenes/raindrop.tscn")
 
@@ -213,10 +218,18 @@ func boss_defeated() -> void:
 	if health_bar:
 		health_bar.visible = false
 
-	if end_cutscene_player:
-		end_cutscene_player.play("EndCutScene")
-	
+	secrets.visible = true
+	end_label.visible = true
+	milk.visible = true
+	secrets.text = "You collected " + str(Cutscene.num_goat_bucks) + " out of 7 secrets!"
+	player.visible = false
+	player.set_physics_process(false)
+	player.velocity = Vector2.ZERO
+	cutscene_camera.enabled = true
+	end_cutscene_player.play("EndCutScene")
 	queue_free()
+	await end_cutscene_player.animation_finished
+	get_tree().change_scene_to_file("res://scenes/title_screen.tscn")
 
 func spawn_raindrop() -> void:
 	if Cutscene.entered_boss_arena:
