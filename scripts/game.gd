@@ -9,6 +9,9 @@ extends Node2D
 @onready var cow1: AnimatedSprite2D = $OpeningCutscene/Cow1
 @onready var cow2: AnimatedSprite2D = $OpeningCutscene/Cow2
 @onready var cow3: AnimatedSprite2D = $OpeningCutscene/Cow3
+@onready var ufo1: AnimatedSprite2D = $OpeningCutscene/UFO1
+@onready var ufo2: AnimatedSprite2D = $OpeningCutscene/UFO2
+@onready var ufo3: AnimatedSprite2D = $OpeningCutscene/UFO3
 @onready var fence: TileMapLayer = $OpeningCutscene/Fence
 @onready var controls: Label = $Labels/Controls
 @onready var skip: Label = $OpeningCutscene/SkipHint
@@ -32,6 +35,9 @@ func _ready() -> void:
 		cow1.visible = false
 		cow2.visible = false
 		cow3.visible = false
+		ufo1.visible = false
+		ufo2.visible = false
+		ufo3.visible = false
 		fence.visibility_layer = 0
 		player.position = Vector2(107, 50)
 		cutscene_camera.enabled = false
@@ -65,6 +71,9 @@ func finish_cutscene() -> void:
 	cow1.visible = false
 	cow2.visible = false
 	cow3.visible = false
+	ufo1.visible = false
+	ufo2.visible = false
+	ufo3.visible = false
 	fence.visibility_layer = 0
 	
 	# Switch cameras

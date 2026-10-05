@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://d33hetv7um1f0"]
+
+[ext_resource type="Texture2D" uid="uid://cjo77m1ptsysr" path="res://assets/sprites/GoatBuckSecrets.png" id="1_2bcw2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vb8bv"]
+atlas = ExtResource("1_2bcw2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xyolh"]
+atlas = ExtResource("1_2bcw2")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cc37w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vb8bv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xyolh")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="GoatBuck" type="Node2D" unique_id=1165079477]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1761072658]
+sprite_frames = SubResource("SpriteFrames_cc37w")
+autoplay = "default"
+frame_progress = 0.032729752

@@ -18,6 +18,8 @@ func _on_cutscene_detection_body_entered(body: Node2D) -> void:
 
 func rocket_cutscene() -> void:
 	print("rocket cutscene triggered")
+	Cutscene.goat_bucks_since_death = 0
+	Cutscene.num_goat_bucks = Cutscene.num_goat_bucks
 	gompei.set_visibility_layer_bit(1, true)
 	is_cutscene = true
 	player.set_physics_process(false)
