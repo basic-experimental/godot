@@ -91,6 +91,8 @@ func _on_boss_arena_body_entered(body: Node2D) -> void:
 	if body == player:
 		if not Cutscene.entered_boss_arena:
 			Cutscene.entered_boss_arena = true
+			Cutscene.num_goat_bucks = Cutscene.num_goat_bucks
+			Cutscene.goat_bucks_since_death = 0
 			
 			# 1. Lock player and switch to cutscene camera
 			player.set_physics_process(false)
