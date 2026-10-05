@@ -40,7 +40,7 @@ shape = SubResource("RectangleShape2D_ge22j")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1119409038]
 sprite_frames = SubResource("SpriteFrames_5kx1k")
 autoplay = "default"
-frame_progress = 0.93164
+frame_progress = 0.4820027
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=421896917]
 stream = ExtResource("3_11l1o")

@@ -8,19 +8,14 @@ extends Node2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var health_bar: AnimatedSprite2D = $"../HealthBar"
-
 @onready var lava_floor: Area2D = get_node_or_null("../BossArena/FloorIsLava")
-<<<<<<< HEAD
-@onready var health_bar: ProgressBar = get_node_or_null("../BossArena/HealthBar") # Adjust path if located under CanvasLayer/UI
 @onready var end_cutscene_player: AnimationPlayer = $"/root/Game/BossCutscene/EndCutScene"
 @onready var player_camera: Camera2D =$"/root/Game/Player/Camera2D"
 @onready var cutscene_camera: Camera2D = $"/root/Game/BossCutscene/CutsceneCamera2"
 @onready var secrets: Label = $"/root/Game/BossCutscene/SecretsCollected"
 @onready var end_label: Label = $"/root/Game/BossCutscene/EndCutsceneLabel"
 @onready var milk: Sprite2D = $"/root/Game/BossCutscene/HolyMilk"
-=======
-@onready var end_cutscene_player: AnimationPlayer = get_node_or_null("../EndCutScene/EndCutScene")
->>>>>>> 56f024bf816694d72137d6dc6e47dda8eae290bb
+
 
 const RAINDROP_SCENE = preload("res://scenes/raindrop.tscn")
 
