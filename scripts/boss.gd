@@ -15,7 +15,12 @@ extends Node2D
 @onready var secrets: Label = $"/root/Game/BossCutscene/SecretsCollected"
 @onready var end_label: Label = $"/root/Game/BossCutscene/EndCutsceneLabel"
 @onready var milk: Sprite2D = $"/root/Game/BossCutscene/HolyMilk"
+@onready var lava_sprite: Control = get_node_or_null("../BossArena/FloorIsLava/Lava")
+@onready var warning_sprite: Control = get_node_or_null("../BossArena/FloorIsLava/Warning")
 
+var lava_warning: bool = false
+
+const LAVA_WARNING_TIME = 1000  # ms
 
 const RAINDROP_SCENE = preload("res://scenes/raindrop.tscn")
 
@@ -57,13 +62,11 @@ func _ready() -> void:
 	if lava_floor:
 		lava_floor.visible = false
 		lava_floor.set_deferred("monitoring", false)
-		# Connect lava collision directly if not already connected
-		if not lava_floor.body_entered.is_connected(_on_lava_floor_body_entered):
-			lava_floor.body_entered.connect(_on_lava_floor_body_entered)
+		
 
 	# Initialize healthbar
 	if health_bar:
-		health_bar.play(str(boss_health))
+		health_bar.frame = 0
 
 	if Cutscene.entered_boss_arena:
 		start_boss()
@@ -82,6 +85,7 @@ func start_boss() -> void:
 
 func _process(delta: float) -> void:
 	update_collision()
+
 	
 	if not boss_active:
 		return
@@ -126,8 +130,10 @@ func _process(delta: float) -> void:
 				animation_start_time = TIME
 
 		State.LavaWait:
-			# Player must survive for 5 seconds
-			if TIME - lava_phase_timer >= LAVA_DURATION:
+			if lava_warning:
+				if TIME - lava_phase_timer >= LAVA_WARNING_TIME:
+					activate_lava()
+			elif TIME - lava_phase_timer >= LAVA_DURATION:
 				end_lava_phase()
 
 func check_player_fire_damage() -> void:
@@ -140,12 +146,13 @@ func check_player_fire_damage() -> void:
 		if boss_rect.has_point(player.global_position):
 			take_damage()
 
+
 func take_damage() -> void:
 	is_invulnerable = true
 	boss_health -= 1
 	
 	if(boss_health > 0):
-		health_bar.play(str(boss_health))
+		health_bar.frame += 1
 
 	# Trigger the Hurt animation
 	state = State.Hurt
@@ -166,35 +173,36 @@ func start_lava_phase() -> void:
 	state = State.LavaWait
 	animated_sprite_2d.play("Attack")
 	lava_phase_timer = Time.get_ticks_msec()
-	
-	# Give player flight boost
+	lava_warning = true
+
 	player.has_infinite_rocket = true
-	
-	# Turn ON lava visuals and hitbox
+
+	# Show warning only. No hitbox yet.
 	if lava_floor:
 		lava_floor.visible = true
-		lava_floor.set_deferred("monitoring", true)
+		lava_sprite.visible = false
+		warning_sprite.visible = true
+		lava_floor.set_deferred("monitoring", false)
+
+func activate_lava() -> void:
+	lava_warning = false
+	lava_phase_timer = Time.get_ticks_msec()  # 5s of real lava starts now
+	warning_sprite.visible = false
+	lava_sprite.visible = true
+	lava_floor.set_deferred("monitoring", true)
 
 func end_lava_phase() -> void:
-	# Turn OFF lava visuals and hitbox
 	if lava_floor:
 		lava_floor.visible = false
+		lava_sprite.visible = false
+		warning_sprite.visible = false
 		lava_floor.set_deferred("monitoring", false)
-	
-	# Remove flight buff
+
 	player.has_infinite_rocket = false
-	
-	# Boss drops into vulnerable Idle state
 	is_invulnerable = false
 	state = State.Idle
 	animated_sprite_2d.play("Idle")
 	animation_start_time = Time.get_ticks_msec()
-
-func _on_lava_floor_body_entered(body: Node2D) -> void:
-	if body == player:
-		# Kill or reset player on lava touch
-		player.play_player_sound(player.SFX_HURT)
-		get_tree().reload_current_scene()
 
 func boss_defeated() -> void:
 	boss_active = false
@@ -209,16 +217,15 @@ func boss_defeated() -> void:
 	if health_bar:
 		health_bar.visible = false
 
-	secrets.visible = true
-	end_label.visible = true
-	milk.visible = true
+	
 	secrets.text = "You collected " + str(Cutscene.num_goat_bucks) + " out of 7 secrets!"
 	player.visible = false
+	boss_active = false
 	player.set_physics_process(false)
 	player.velocity = Vector2.ZERO
 	cutscene_camera.enabled = true
+	cutscene_camera.make_current()
 	end_cutscene_player.play("EndCutScene")
-	queue_free()
 	await end_cutscene_player.animation_finished
 	get_tree().change_scene_to_file("res://scenes/title_screen.tscn")
 

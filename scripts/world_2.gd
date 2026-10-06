@@ -125,9 +125,7 @@ func _on_boss_arena_body_entered(body: Node2D) -> void:
 			# 3. Cutscene is done: hide the entire cutscene container permanently
 			$BossCutscene/BossCutscene.visible = false
 			$BossCutscene/Goat.visible = false
-
 			$BossCutscene/StartCutsceneLabel.visible = false
-
 			
 			# 4. Enable combat boss and restore controls
 			combat_boss.visible = true

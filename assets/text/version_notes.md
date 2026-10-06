@@ -1,7 +1,9 @@
 #Version Notes
 I'm the version notes!
 
-*There is currently no way to kill the final boss.
+*To kill boss use fire breath. Use rocket during stage 2 of boss to live.
+*To avoid ufo, use statue
+*To kill spider, use statue or ram in back 3 times. 
 
 Date: 8/31/26
 	- Added Goat Asset sprite sheet made with aseprite
@@ -52,6 +54,15 @@ Date: 9/28/26
 Date: 9/29/26
 	-Made it so boss arena fixes camera
 	-Worked on more ways to kill enemies
+	
+Date: 10/5/26
+	-Added multiple phases of boss
+	-Added final cutscene
+	-Added secrets
+	
+Date: 10/6/26
+	-Fixed bugs with cutscene visibility
+
 
 
 
