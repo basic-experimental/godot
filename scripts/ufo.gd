@@ -8,7 +8,7 @@ extends CharacterBody2D
 
 const SPEED = 60
 const ABDUCT_COOLDOWN = 5000 #ms
-const ABDUCT_TIME = 2000 #ms
+const ABDUCT_TIME = 500 #ms
 
 var direction = 1
 var health = 3
