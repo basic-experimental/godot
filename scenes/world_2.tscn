@@ -1760,7 +1760,7 @@ texture = ExtResource("26_pg8nx")
 position = Vector2(1871, 45)
 
 [node name="Coin" parent="Coins" unique_id=195338749 instance=ExtResource("22_s8ivg")]
-position = Vector2(-199, -685)
+position = Vector2(40, -928)
 
 [node name="Coin3" parent="Coins" unique_id=1645192452 instance=ExtResource("22_s8ivg")]
 position = Vector2(1237, -425)
